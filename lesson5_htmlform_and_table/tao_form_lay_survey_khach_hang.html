@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Tạo form lấy survey khách hàng</title>
+</head>
+<body>
+<form action="" style="width: 100%">
+    <h1>Market Research Survey</h1>
+    <p>Please take a few moments to complete this satisfaction survey.</p>
+    <hr style="border: none; border-top: 2px dotted black;">
+    <label>What is your age range?</label>
+    <br>
+    <label>
+        <select name="age" style="width: 50%; margin-top: 5px;margin-bottom: 5px;height: 30px">
+            <option value="chontuoi"></option>
+            <option value="18-24">18-24</option>
+            <option value="25-34">25-34</option>
+            <option value="35-50">35-50</option>
+            <option value="50+">50+</option>
+        </select>
+    </label>
+    <br>
+    <label>What is your yearly income range?</label>
+    <br>
+    <label>
+        <select name="price" style="width: 50%; margin-top: 5px;margin-bottom: 5px;height: 30px">
+            <option value="chongia"></option>
+            <option value="0-25000">$0-$25000</option>
+            <option value="25001-50000">$25001-$50000</option>
+            <option value="50001-100000">$50001-$100000</option>
+            <option value="100000+">$100000+</option>
+        </select>
+    </label>
+    <br>
+    <label>Gender Identity</label>
+    <br>
+    <label><input name="gender" value="Male" type="radio" required/> Male</label><br/>
+    <label><input name="gender" value="Female" type="radio" required/> Female</label> <br/>
+    <label><input name="gender" value="Nonbinary" type="radio" required/> Nonbinary</label><br/>
+    <label><input name="gender" value="Other" type="radio" required/> Other</label> <br/>
+    <label>Which of the following products have your purchased in the last 2 months. Please check all that
+        apply.</label><br>
+    <label><input name="option" value="product1" type="checkbox"/> Product 1</label> <br/>
+    <label><input name="option" value="product2" type="checkbox"/> Product 2</label> <br/>
+    <label><input name="option" value="product3" type="checkbox"/> Product 3</label> <br/>
+    <label>How often would you use our new product?</label>
+    <br>
+    <label><input name="daily" value="Daily" type="radio" required/> Daily</label><br/>
+    <label><input name="daily" value="Weekly" type="radio" required/> Weekly</label> <br/>
+    <label><input name="daily" value="Monthly" type="radio" required/>
+        Monthly</label><br/>
+    <label>What would you pay for the new product?</label>
+    <br>
+    <table>
+        <tr>
+            <td>$</td>
+            <td><input type="text" style="width: 40px;"></td>
+            <td>.</td>
+            <td><input type="text" style="width: 10px"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Dollars</td>
+            <td></td>
+            <td>Cents</td>
+        </tr>
+    </table>
+    <label>What would you pay for the new product?</label><br>
+    <textarea name="description" id="" cols="30" rows="15" style="width: 100%"></textarea>
+    <label>
+        Please rate your level of agreement with the following statements.
+    </label>
+    <br>
+    <table style="font-family: Arial, sans-serif" width="100%">
+        <tr>
+            <th style="text-align: left; padding: 8px; background-color: #dddddd" ></th>
+            <th style="text-align: left; padding: 8px; background-color: #dddddd" >Strongly Disagree</th>
+            <th style="text-align: left; padding: 8px; background-color: #dddddd" >Disagree</th>
+            <th style="text-align: left; padding: 8px; background-color: #dddddd" >Agree</th>
+            <th style="text-align: left; padding: 8px; background-color: #dddddd" >Strongly Agree</th>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 8px" >Our products are priced fairly.</td>
+            <td style="text-align: left; padding: 8px" > <label><input name="number" value="1" type="radio" required/> 1</label></td>
+            <td style="text-align: left; padding: 8px" ><label><input name="number" value="2" type="radio" required/> 2</label></td>
+            <td style="text-align: left; padding: 8px" ><label><input name="number" value="3" type="radio" required/> 3</label></td>
+            <td style="text-align: left; padding: 8px" ><label><input name="number" value="4" type="radio" required/> 4</label></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd" >Our products are hight quality.</td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd" ><label><input name="number" value="1" type="radio" required/> 1</label></td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd" ><label><input name="number" value="2" type="radio" required/> 2</label></td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd" ><label><input name="number" value="3" type="radio" required/> 3</label></td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd" ><label><input name="number" value="4" type="radio" required/> 4</label></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd">You would recommend our product to a friend or coworker</td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd"><label><input name="number" value="1" type="radio" required/> 1</label></td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd"><label><input name="number" value="2" type="radio" required/> 2</label></td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd" ><label><input name="number" value="3" type="radio" required/> 3</label></td>
+            <td style="text-align: left; padding: 8px; background-color: #dddddd" ><label><input name="number" value="4" type="radio" required/> 4</label></td>
+        </tr>
+    </table>
+    <br>
+    <input type="submit" value="Submit" style="width: 100px">
+</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Tạo một form tìm kiếm Google</title>
+</head>
+<body>
+<h1>Mở trang web, nhập từ muốn tìm kiếm và nhấn nút Tìm kiếm, quan sát kết quả</h1>
+<h5>Thuộc tính method và action: GET và https://www.google.com.vn/search</h5>
+<form action="https://www.google.com.vn/search" method="get" style="margin-bottom: 10px">
+    <input type="text" name="q">
+    <input type="submit" value="Tìm kiếm">
+</form>
+<!--Thử thay đổi thuộc tính method và quan sát kết quả-->
+<h5>Thuộc tính method và action: POST và https://www.google.com.vn/search</h5>
+<form action="https://www.google.com.vn/search" method="post" style="margin-bottom: 10px">
+    <input type="text" name="q">
+    <input type="submit" value="Tìm kiếm">
+</form>
+<!--Thử thay đổi thuộc tính action và quan sát kết quả-->
+<h5>Thuộc tính method và action: POST và https://codegym.vn</h5>
+<form action="https://codegym.vn" method="post" style="margin-bottom: 10px">
+    <input type="text" name="q">
+    <input type="submit" value="Tìm kiếm">
+</form>
+<!--Thử thay đổi thuộc tính action và quan sát kết quả-->
+<h5>Thuộc tính method và action: GET và https://codegym.vn</h5>
+<form action="https://codegym.vn" method="post" style="margin-bottom: 10px">
+    <input type="text" name="q">
+    <input type="submit" value="Tìm kiếm">
+</form>
+<!--Nếu muốn sử dụng trang tìm kiếm của Bing thì làm thế nào?-->
+<h5>Thuộc tính method và action: GET và https://www.bing.com/search</h5>
+<form action="https://www.bing.com/search" method="GET" style="margin-bottom: 10px">
+    <input type="text" name="q">
+    <input type="submit" value="Tìm kiếm">
+</form>
+</body>
+</html>
