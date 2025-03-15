@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Khai báo và sử dụng biến</title>
+</head>
+<body>
+<h1>Khai báo và sử dụng biến</h1>
+<script>
+
+
+    const A = prompt("Nhập biến A:");
+    const B = prompt("Nhập biến B:");
+    let message;
+    if (A % B === 0) {
+        message = A + " là bội số của " + B;
+    } else {
+        message = A + " không phải là bội số của " + B;
+    }
+
+    alert(message)
+    document.write("<h5>Bài 3: Dùng hàm prompt() để nhập 2 số từ bàn phím, lưu vào 2 biến là a và b. Kiểm tra xem a có phải là bội số của b hay không (tức là a có chia hết cho b hay không). Hiển thị kết quả ra màn hình bằng cách sử dụng hàm alert().</h5>\n")
+    document.write("A = " + A);
+    document.write("</br>");
+    document.write("B = " + B);
+    document.write("</br>");
+    document.write(message)
+
+</script>
+</body>
+</html>

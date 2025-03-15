@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Ứng dụng chuyển đổi tiền tệ</title>
+</head>
+<body>
+<h1>[Bài tập] Ứng dụng chuyển đổi tiền tệ</h1>
+<form action="" method="get">
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>From Currency</th>
+            <th>To Currency</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <label for="tienTe"><input type="number" style="width: 200px; margin: 20px" id="tienTe"></label>
+            </td>
+            <td>
+                <label for="fromCurrency">
+                    <select id="fromCurrency" name="tienTe" style="width:100px; margin: 20px">
+                        <option value="VN">VN</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </label>
+            </td>
+            <td>
+                <label for="toCurrency">
+                    <select id="toCurrency" name="tienTe" style="width: 100px ;margin: 20px">
+                        <option value="VN">VN</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </label>
+            </td>
+            <td>
+                <button type="button" style="width: 100px;margin: 20px" onclick="doiTienTe();">Convert</button>
+            </td>
+
+        </tr>
+    </table>
+</form>
+<p id="ketQua" style="font-size: 18px; margin: 20px; font-weight: bold;"></p>
+<script>
+    function doiTienTe() {
+        let amount = parseFloat(document.getElementById("tienTe").value);
+        let fromCurrency = document.getElementById("fromCurrency").value;
+        let toCurrency = document.getElementById("toCurrency").value;
+        let convertedAmount = 0;
+        // Kiểm tra nếu người dùng không nhập số
+        if (isNaN(amount) || amount <= 0) {
+            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số tiền hợp lệ!";
+            return;
+        }
+
+        // Xử lý chuyển đổi tiền tệ
+        if (fromCurrency === "VN" && toCurrency === "USD") {
+            convertedAmount = amount * 0.00004; // 1 VNĐ = 0.00004 USD
+        } else if (fromCurrency === "USD" && toCurrency === "VN") {
+            convertedAmount = amount * 23000; // 1 USD = 23,000 VNĐ
+        } else {
+            convertedAmount = amount; // Trường hợp chọn cùng một loại tiền tệ
+        }
+
+        document.getElementById("ketQua").innerHTML = `Kết quả: ${convertedAmount} ${toCurrency}`;
+    }
+</script>
+</body>
+</html>

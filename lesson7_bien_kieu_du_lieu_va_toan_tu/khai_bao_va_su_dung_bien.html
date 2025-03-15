@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Khai báo và sử dụng biến</title>
+</head>
+<body>
+<h1>Khai báo và sử dụng biến</h1>
+<script>
+
+    let i = 10;
+    let f = 20.5;
+    let b = true;
+    let s = "Hà Nội";
+
+
+    let width = 20;
+    let height = 10;
+
+    const A = prompt("Nhập biến A:");
+    const B = prompt("Nhập biến B:");
+    if (A % B === 0) {
+        alert(A + " là bội số của " + B);
+    } else {
+        alert(A + " không phải là bội số của " + B);
+    }
+
+    document.write("<h5>Bài 1: Khai báo các biến thuộc các kiểu khác nhau, gán giá trị cho chúng và in ra tài liệu HTML.</h5>\n")
+    document.write("i = " + i);
+    document.write("</br>");
+    document.write("f = " + f);
+    document.write("</br>");
+    document.write("b = " + b);
+    document.write("</br>");
+    document.write("s = " + s);
+    document.write("<h5>Bài 2: Viết một đoạn mã Javascript, khai báo biến width chứa giá trị độ rộng của hình chữ nhật, biến height chứa giá trị chiều cao của hình chữ nhật. In ra màn hình diện tích của hình chữ nhật đó.</h5>\n")
+    document.write("Chiều dài hình chữ nhật là: " + width)
+    document.write("</br>");
+    document.write("Chiều rộng hình chữ nhật là: " + height)
+    document.write("</br>");
+    document.write("Diện tích hình chữ nhật là: " + width + "*" + height + " = " + width * height);
+    document.write("<h5>Bài 3: Dùng hàm prompt() để nhập 2 số từ bàn phím, lưu vào 2 biến là a và b. Kiểm tra xem a có phải là bội số của b hay không (tức là a có chia hết cho b hay không). Hiển thị kết quả ra màn hình bằng cách sử dụng hàm alert().</h5>\n")
+
+
+
+</script>
+</body>
+</html>

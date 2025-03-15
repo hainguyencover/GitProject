@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Ứng dụng máy tính</title>
+</head>
+<body>
+<h1>[Bài tập] Ứng dụng máy tính</h1>
+<form action="" method="get">
+    <table>
+        <tr>
+            <td colspan="2">
+                <label>
+                    <input type="number" placeholder="Nhập số thứ nhất" style="width: 200px;margin-bottom: 20px"
+                           id="so1">
+                </label>
+            </td>
+            <td colspan="2">
+                <label for="so2"></label><input type="number" placeholder="Nhập số thứ hai"
+                                                style="width: 200px;margin-bottom: 20px"
+                                                id="so2">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="button" onclick="onTong();" style="width: 100px">Cộng</button>
+            </td>
+            <td>
+                <button type="button" onclick="onHieu();" style="width: 100px">Trừ</button>
+            </td>
+            <td>
+                <button type="button" onclick="onNhan();" style="width: 100px">Nhân</button>
+            </td>
+            <td>
+                <button type="button" onclick="onThuong();" style="width: 100px">Chia</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<p id="ketQua" style="font-size: 18px; margin: 20px; font-weight: bold;"></p>
+<script>
+    function doiTienTe() {
+        let amount = parseFloat(document.getElementById("tienTe").value);
+        let fromCurrency = document.getElementById("fromCurrency").value;
+        let toCurrency = document.getElementById("toCurrency").value;
+        let convertedAmount = 0;
+        // Kiểm tra nếu người dùng không nhập số
+        if (isNaN(amount) || amount <= 0) {
+            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số tiền hợp lệ!";
+            return;
+        }
+
+
+        document.getElementById("ketQua").innerHTML = `Kết quả: ${convertedAmount} ${toCurrency}`;
+    }
+
+    function onTong() {
+        let a = parseFloat(document.getElementById("so1").value);
+        let b = parseFloat(document.getElementById("so2").value);
+        //Kiem tra neu nguoi dung khong nhap so
+        if (isNaN(a) || isNaN(b)) {
+            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số!"
+        }
+        document.getElementById("ketQua").innerHTML = `Kết quả: ${a + b}`;
+    }
+
+    function onHieu() {
+        let a = parseFloat(document.getElementById("so1").value);
+        let b = parseFloat(document.getElementById("so2").value);
+        //Kiem tra neu nguoi dung khong nhap so
+        if (isNaN(a) || isNaN(b)) {
+            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số!"
+        }
+        document.getElementById("ketQua").innerHTML = `Kết quả: ${a - b}`;
+    }
+
+    function onNhan() {
+        let a = parseFloat(document.getElementById("so1").value);
+        let b = parseFloat(document.getElementById("so2").value);
+        //Kiem tra neu nguoi dung khong nhap so
+        if (isNaN(a) || isNaN(b)) {
+            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số!"
+        }
+        document.getElementById("ketQua").innerHTML = `Kết quả: ${a * b}`;
+    }
+
+    function onThuong() {
+        let a = parseFloat(document.getElementById("so1").value);
+        let b = parseFloat(document.getElementById("so2").value);
+        //Kiem tra neu nguoi dung khong nhap so
+        if (isNaN(a) || isNaN(b)) {
+            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số!"
+        }
+        document.getElementById("ketQua").innerHTML = `Kết quả: ${a / b}`;
+    }
+</script>
+</body>
+</html>
