@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Luyện tập với cấu trúc switch-case</title>
+</head>
+<body>
+<h1>[Thực hành] Luyện tập với cấu trúc switch-case</h1>
+<script>
+    /*Bài 3: Sử dụng cấu trúc if…else, nhập vào một số, kiểm tra giá trị của số nhập vào*/
+    // Cấu trúc if-else-if
+    // let x = prompt("Nhập vào một số bất kì", 0);
+    // if (x > 0) {
+    //     alert(1);
+    // } else if (x < 0) {
+    //     alert(-1);
+    // } else {
+    //     alert(0);
+    // }
+
+
+    // Cấu trúc switch-case
+    let x = Number(prompt("Nhập vào một số bất kì", 0));
+    switch (true) {
+        case x > 0:
+            alert(1);
+            break;
+        case x < 0:
+            alert(-1);
+            break;
+        default:
+            alert(0);
+    }
+</script>
+</body>
+</html>
