@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Tính chỉ số cân nặng của cơ thể</title>
+</head>
+<body>
+<h1>[Bài tập] Tính chỉ số cân nặng của cơ thể</h1>
+<table>
+    <tr>
+        <td>
+            Nhập cân nặng:
+        </td>
+        <td>
+            (kg)
+        </td>
+        <td>
+            <input type="number" id="canNang">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Nhập chiều cao:
+        </td>
+        <td>
+            (m)
+        </td>
+        <td>
+            <input type="number" id="chieuCao">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" value="Kiểm tra" onclick="ketQua();">Kiểm tra</button>
+        </td>
+    </tr>
+</table>
+<p id="hienthiKetQuua"></p>
+<script>
+    // Phân loại chỉ số BMI theo Tổ chức Y tế Thế giới (WHO)
+    // < 16.0	Gầy độ III (rất gầy)
+    // 16.0 - 16.9	Gầy độ II
+    // 17.0 - 18.4	Gầy độ I
+    // 18.5 - 24.9	Bình thường
+    // 25.0 - 29.9	Thừa cân
+    // 30.0 - 34.9	Béo phì độ I
+    // 35.0 - 39.9	Béo phì độ II
+    // ≥ 40.0	Béo phì độ III (rất béo)
+    function ketQua() {
+        let inputWeight = document.getElementById("canNang");
+        let inputHeight = document.getElementById("chieuCao");
+        let weight = parseFloat(inputWeight.value);
+        let height = parseFloat(inputHeight.value);
+        let BMI = weight / (height * height);
+
+        if (BMI < 18.5) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + "Underweight";
+        } else if (BMI < 25.0) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Normal";
+        } else if (BMI < 30.0) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Overweight";
+        } else {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + "Obese";
+        }
+
+
+        if (BMI < 16) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Gầy độ III (rất gầy)</b>";
+        } else if (BMI < 17) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Gầy độ II</b>";
+        } else if (BMI < 18.5) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Gầy độ I</b>";
+        } else if (BMI < 25) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Bình thường</b>";
+        } else if (BMI < 30) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Thừa cân</b>";
+        } else if (BMI < 30) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Béo phì độ I</b>";
+        } else if (BMI < 40) {
+            document.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Béo phì độ II</b>";
+        } else {
+            ocument.getElementById("hienthiKetQuua").innerHTML = "Chỉ số BMI là:" + BMI + "." + " Bạn. <b>Béo phì độ III (rất béo)</b>";
+        }
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Ứng dụng vui DoYouLoveMe</title>
+</head>
+<body>
+<h1 style="text-align: center">[Bài tập] Ứng dụng vui DoYouLoveMe</h1>
+<p style="color: black;font-weight: bold;font-size: 30px; text-align: center">Do You Love Me?</p>
+<input type="button" value="YES" id="btnYes" onclick="funcYes()">
+<input type="button" value="NO" id="btnNo" onmouseover="funcNo()">
+
+<script>
+    function funcYes() {
+        alert("Yes, you are right");
+    }
+    function funcNo() {
+        var x = Math.round(Math.random() * window.innerWidth);
+        var y = Math.round(Math.random() * window.innerHeight);
+        document.getElementById('btnNo').style.left = x + 'px';
+        document.getElementById('btnNo').style.top = y + 'px';
+    }
+</script>
+</body>
+</html>

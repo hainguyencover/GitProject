@@ -39,21 +39,6 @@
 </form>
 <p id="ketQua" style="font-size: 18px; margin: 20px; font-weight: bold;"></p>
 <script>
-    function doiTienTe() {
-        let amount = parseFloat(document.getElementById("tienTe").value);
-        let fromCurrency = document.getElementById("fromCurrency").value;
-        let toCurrency = document.getElementById("toCurrency").value;
-        let convertedAmount = 0;
-        // Kiểm tra nếu người dùng không nhập số
-        if (isNaN(amount) || amount <= 0) {
-            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số tiền hợp lệ!";
-            return;
-        }
-
-
-        document.getElementById("ketQua").innerHTML = `Kết quả: ${convertedAmount} ${toCurrency}`;
-    }
-
     function onTong() {
         let a = parseFloat(document.getElementById("so1").value);
         let b = parseFloat(document.getElementById("so2").value);

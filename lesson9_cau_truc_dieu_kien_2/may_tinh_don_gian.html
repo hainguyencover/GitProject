@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Máy tính đơn giản</title>
+</head>
+<body>
+<h1>[Bài tập] Máy tính đơn giản</h1>
+<table style="border: 2px black solid; color: blue; width: 300px; height: 300px">
+    <tr>
+        <td colspan="4">
+            <p id="ketQua"
+               style="color: blue;text-align: right; padding-right:10px;border: 1px gray solid; height: 50px; align-content: center"></p>
+        </td>
+    </tr>
+    <tr style="text-align: center">
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(1)">1
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(2)">2
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(3)">3
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_tu('+')">+
+            </button>
+        </td>
+    </tr>
+    <tr style="text-align: center">
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(4)">4
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(5)">5
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(5)">6
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_tu('-')">-
+            </button>
+        </td>
+    </tr>
+    <tr style="text-align: center">
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(7)">7
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(8)">8
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(9)">9
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_tu('*')">x
+            </button>
+        </td>
+    </tr>
+    <tr style="text-align: center">
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="lam_lai()">C
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_hang(0)">0
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="thuc_hien()">=
+            </button>
+        </td>
+        <td>
+            <button type="button" style="width: 50px;height: 50px;text-align: center; color: blue"
+                    onclick="toan_tu('/')">/
+            </button>
+        </td>
+    </tr>
+
+</table>
+<script>
+
+    var a = "", b = "", o = "";
+
+    function thuc_hien() {
+        if (a !== "" && b !== "" && o !== "") {
+            var ketQua;
+            switch (o) {
+                case '+':
+                    ketQua = parseFloat(a) + parseFloat(b);
+                    break;
+                case '-':
+                    ketQua = parseFloat(a) - parseFloat(b);
+                    break;
+                case '*':
+                    ketQua = parseFloat(a) * parseFloat(b);
+                    break;
+                case '/':
+                    ketQua = (parseFloat(b) !== 0) ? parseFloat(a) / parseFloat(b) : "Lỗi chia 0";
+                    break;
+                default:
+                    return;
+            }
+            document.getElementById("ketQua").innerHTML = ketQua;
+            a = ketQua.toString(); // Lưu kết quả để tiếp tục tính toán
+            b = "";
+            o = "";
+        }
+    }
+
+    function toan_hang(x) {
+        if (o === "") {
+            a = a + x;
+        } else {
+            b = b + x;
+        }
+        cap_nhatHienThi()
+    }
+
+    function toan_tu(x) {
+        if (a !== "" && o === "") {
+            o = x;
+        }
+        cap_nhatHienThi()
+    }
+
+    function lam_lai() {
+        a = "";
+        b = "";
+        o = "";
+        document.getElementById("ketQua").innerHTML = "";
+    }
+
+    function cap_nhatHienThi() {
+        document.getElementById("ketQua").innerHTML = a + " " + o + " " + b;
+    }
+</script>
+</body>
+</html>

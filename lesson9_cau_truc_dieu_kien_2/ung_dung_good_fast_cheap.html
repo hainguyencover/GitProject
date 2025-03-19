@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Ứng dụng good-fast-cheap</title>
+</head>
+<body>
+<h1>[*Bài tập] Ứng dụng good-fast-cheap</h1>
+<table style="width: 300px;height: 300px" >
+    <tr>
+        <td>
+            <img id="img1" src="https://cdn-icons-png.flaticon.com/512/5720/5720465.png"
+                 style="width: 50px;height: 50px" alt="Switch" onclick="button_toggle('img1')">
+        </td>
+        <td>
+            Good
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img id="img2" src="https://cdn-icons-png.flaticon.com/512/5720/5720465.png"
+                 style="width: 50px;height: 50px" alt="Switch" onclick="button_toggle('img2')">
+        </td>
+        <td>
+            Fast
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img id="img3" src="https://cdn-icons-png.flaticon.com/512/5720/5720465.png"
+                 style="width: 50px;height: 50px" alt="Switch" onclick="button_toggle('img3')">
+        </td>
+        <td>
+            Cheap
+        </td>
+    </tr>
+</table>
+<script>
+
+    function button1(img1) {
+        let img = document.getElementById(img1);
+        img.src = img.src.includes("https://cdn-icons-png.flaticon.com/512/5720/5720465.png") ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Bs1lAX7j71JP7FHsV7rgnewX4beCrWI0f7wqi9IDHpw38bLfltbnWuT2sbWhSxwUSdg&usqp=CAU" : "https://cdn-icons-png.flaticon.com/512/5720/5720465.png";
+    }
+
+    function button2(img2) {
+        let img = document.getElementById(img2);
+        img.src = img.src.includes("https://cdn-icons-png.flaticon.com/512/5720/5720465.png") ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFwJ3aRIAqHYpJO65wCWtAIMaM-rRbriKWYJR8QT0vNlymeWOvIA_hSP7BLP4bjZrBses&usqp=CAU" : "https://cdn-icons-png.flaticon.com/512/5720/5720465.png";
+    }
+
+    function button3(img3) {
+        let img = document.getElementById(img3);
+        img.src = img.src.includes("https://cdn-icons-png.flaticon.com/512/5720/5720465.png") ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBaqs9gKgkZNkwMlscTBh0cPmn4U-101oUOZq0CQpt9ffuHw-VCmHZJcR5nhCChXSaCbo&usqp=CAU" : "https://cdn-icons-png.flaticon.com/512/5720/5720465.png";
+    }
+
+
+
+    const iconOff = "https://cdn-icons-png.flaticon.com/512/5720/5720465.png"; // Icon khi tắt
+    const iconsOn = {
+        "img1": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4Bs1lAX7j71JP7FHsV7rgnewX4beCrWI0f7wqi9IDHpw38bLfltbnWuT2sbWhSxwUSdg&usqp=CAU",
+        "img2": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFwJ3aRIAqHYpJO65wCWtAIMaM-rRbriKWYJR8QT0vNlymeWOvIA_hSP7BLP4bjZrBses&usqp=CAU",
+        "img3": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBaqs9gKgkZNkwMlscTBh0cPmn4U-101oUOZq0CQpt9ffuHw-VCmHZJcR5nhCChXSaCbo&usqp=CAU"
+    };
+
+
+    let isOn1 = false, isOn2 = false, isOn3 = false; // Trạng thái bật/tắt của từng nút
+
+    function button_toggle(id) {
+        let img = document.getElementById(id);
+
+        if (id === "img1") {
+            if (!isOn1) { // Nếu button1 đang tắt
+                img.src = iconsOn["img1"];
+                isOn1 = true;
+
+                if (isOn2 && isOn3) { // Nếu đã có 2 button bật, tắt button gần nhất
+                    document.getElementById("img3").src = iconOff;
+                    isOn3 = false;
+                }
+            } else { // Nếu button1 đang bật
+                img.src = iconOff;
+                isOn1 = false;
+            }
+        }
+
+        else if (id === "img2") {
+            if (!isOn2) { // Nếu button2 đang tắt
+                img.src = iconsOn["img2"];
+                isOn2 = true;
+
+                if (isOn1 && isOn3) {
+                    document.getElementById("img1").src = iconOff;
+                    isOn1 = false;
+                }
+            } else {
+                img.src = iconOff;
+                isOn2 = false;
+            }
+        }
+
+        else if (id === "img3") {
+            if (!isOn3) { // Nếu button3 đang tắt
+                img.src = iconsOn["img3"];
+                isOn3 = true;
+
+                if (isOn1 && isOn2) {
+                    document.getElementById("img2").src = iconOff;
+                    isOn2 = false;
+                }
+            } else {
+                img.src = iconOff;
+                isOn3 = false;
+            }
+        }
+    }
+</script>
+</body>
+</html>
