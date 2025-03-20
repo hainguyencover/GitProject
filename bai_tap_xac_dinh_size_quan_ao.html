@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xác định size quần áo theo cân nặng</title>
+</head>
+<body>
+<h1>Xác định size quần áo theo cân nặng</h1>
+<p id="ketQua"></p>
+<script>
+    let canNang = +prompt("Nhập số cân nặng của bạn:");
+    if (isNaN(canNang)) {
+        document.write("Vui lòng nhập số cân nặng hợp lý");
+    } else if (canNang > 80) {
+        document.write("Bạn sẽ mặc size XL");
+    } else if (canNang <= 80 && canNang > 66) {
+        document.write("Bạn sẽ mặc size L")
+    } else if (canNang <= 65 && canNang > 50) {
+        document.write("Bạn sẽ mặc size M")
+    } else {
+        document.write("Bạn sẽ mặc size S")
+    }
+</script>
+</body>
+</html>
