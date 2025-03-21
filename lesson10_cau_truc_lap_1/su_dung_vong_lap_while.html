@@ -2,9 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>[Thực hành] Sử dụng vòng lặp while</title>
 </head>
 <body>
+<h1>[Thực hành] Sử dụng vòng lặp while</h1>
+<script>
+    /*Bài 1: Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết thúc khi người dùng nhập vào giá trị -1.
+    Mỗi giá trị nhập được sẽ được hiển thị ra và thực hiện tính tổng các giá trị đó.*/
+    document.write("Bài 1: Viết chương trình nhận vào một số từ hộp thoại, việc nhập kết thúc khi người dùng nhập vào giá trị -1.\n" +
+        "    Mỗi giá trị nhập được sẽ được hiển thị ra và thực hiện tính tổng các giá trị đó.<br>")
+    let total = 0; // Biến lưu tổng
+    let num = Number(prompt("Nhập một số (Nhập -1 để kết thúc): ")); // Nhập số đầu tiên
 
+    while (num !== -1) {
+        if (!isNaN(num)) { // Kiểm tra nếu là số hợp lệ
+            alert(`Bạn đã nhập: ${num}`);
+            total += num; // Cộng vào tổng
+        } else {
+            alert("Vui lòng nhập một số hợp lệ.");
+        }
+
+        num = Number(prompt("Nhập một số (Nhập -1 để kết thúc): ")); // Nhập số tiếp theo
+    }
+
+    document.write(`Tổng các số đã nhập là: <b>${total}</b>`);
+
+
+    // Bài 2: Viết chương hình hiển thị thẻ <hr> theo độ rộng từ 1 đến 100. Kết quả sẽ được hiển thị như hình
+    document.write("Bài 2: Viết chương hình hiển thị thẻ hr theo độ rộng từ 1 đến 100. Kết quả sẽ được hiển thị như hình<br>")
+    let i = 1;
+    while (i < 100) {
+        document.write("<hr width=" + i + ">");
+        i = i + 5;
+    }
+
+</script>
 </body>
 </html>
