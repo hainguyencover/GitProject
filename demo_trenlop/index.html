@@ -1,30 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!--    Cách 1 - external: Nhúng tệp .js từ bên ngoài-->
-    <!--    <script src="script.js"></script>-->
+    <title>Thực hành Debug</title>
 </head>
 <body>
-<!--Cách 3: inline: Nhúng vào thẻ(tag) HTML-->
-<h1>JavaScript overview</h1>
-<ul>
-    <li onmouseover="this.style.color = 'red'" onmouseout="this.style.color = 'black'">External</li>
-    <li>Internal</li>
-    <li>Inline</li>
-</ul>
-<button onclick="alert('Hello World!')">Tải về</button>
-
-<h2>Các hàm trong JS</h2>
-<!--Cách 2 : Nhúng vào file HTML-->
+<h1>Debug trong JavaScript</h1>
+<button id="myButton">Click Me!</button>
+<!--<script src="script.js"></script>-->
 <script>
-    // alert("Xin chào thế giới")
-    var name = prompt("Nhập tên của bạn:");
-    var age = prompt("Nhập tuổi của bạn:");
-    alert("Xin chào " + name + "!, tuổi của bạn là:" + age)
+    const radius = +prompt("Nhập vào bán kính hình tròn: ")
+    // if (radius >= 0) {
+    //
+    //     area = radius * radius * Math.PI;
+    //     console.log(area)
+    // }
 
-
+    if (i > j)
+        if (i > k)
+            console.log("A");
+        else
+            console.log("B");
 </script>
 </body>
 </html>

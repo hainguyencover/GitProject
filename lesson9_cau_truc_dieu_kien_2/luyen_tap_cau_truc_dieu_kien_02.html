@@ -2,9 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>[*Bài tập] Luyện tập cấu trúc điều kiện 02</title>
 </head>
 <body>
+<h1>[*Bài tập] Luyện tập cấu trúc điều kiện 02</h1>
+<h2>Chuyển độ C sang độ F</h2>
+<table>
+    <tr>
+        <td>
+            <label for="nhietDo"><input type="number" style="width: 200px; margin: 20px" id="nhietDo"></label>
+        </td>
+        <td>
+            <label for="fromCurrency">
+                <select id="fromCurrency" name="nhietDo" style="width:100px; margin: 20px">
+                    <option value="C">C</option>
+                    <option value="F">F</option>
+                </select>
+            </label>
+        </td>
+        <td>
+            <label for="toCurrency">
+                <select id="toCurrency" name="nhietDo" style="width: 100px ;margin: 20px">
+                    <option value="C">C</option>
+                    <option value="F">F</option>
+                </select>
+            </label>
+        </td>
+        <td>
+            <button type="button" style="width: 100px;margin: 20px" onclick="doiTienTe();">Đổi</button>
+        </td>
 
+    </tr>
+    <tr>
+        <p id="ketQuaBai1"></p>
+
+    </tr>
+</table>
+<script>
+    // Bài 1: Chuyển độ C sang độ F
+    function doiNhietDo() {
+        let amount = parseFloat(document.getElementById("nhietDo").value);
+        let fromCurrency = document.getElementById("fromCurrency").value;
+        let toCurrency = document.getElementById("toCurrency").value;
+        let nhietDoF = 0;
+        let nhietDoC = 0;
+        // Kiểm tra nếu người dùng không nhập số
+        if (isNaN(amount) || amount <= 0) {
+            document.getElementById("ketQuaBai1").innerHTML = "Vui lòng nhập số nhiệt độ hợp lệ!";
+            return;
+        }
+        let F =(9 * C) / 5 + 32;
+        // Xử lý chuyển đổi tiền tệ
+        if (fromCurrency === "C" && toCurrency === "F") {
+            nhietDoF = (9 * C) / 5 + 32;
+        } else if (fromCurrency === "F" && toCurrency === "C") {
+            nhietDoC = ;
+        } else {
+            convertedAmount = amount;
+        }
+
+        document.getElementById("ketQuaBai1").innerHTML = `Kết quả: ${convertedAmount} ${toCurrency}`;
+    }
+</script>
 </body>
 </html>

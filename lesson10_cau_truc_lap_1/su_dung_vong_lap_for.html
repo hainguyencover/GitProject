@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Sử dụng vòng lặp for</title>
+</head>
+<body>
+<h1>
+    [Thực hành] Sử dụng vòng lặp for
+</h1>
+<script>
+    // Bai1: Viết chương trình hiển thị chuỗi “The number is N” 5 lần sử dụng vòng lặp for. Với N sẽ hiển thị từ 0 đến 5.
+    document.write("Bài 1: Viết chương trình hiển thị chuỗi “The number is N” 5 lần sử dụng vòng lặp for. Với N sẽ hiển thị từ 0 đến 5.")
+    for (let i = 0; i < 6; i++) {
+        document.write("The number is " + i + "<br>");
+    }
+    // Bài 2: Viết chương trình nhập vào một số bất kỳ lớn hơn 0. Tính tổng các phần tử từ 1 đến số vừa nhập vào.
+    document.write("Bài 2: Viết chương trình nhập vào một số bất kỳ lớn hơn 0. Tính tổng các phần tử từ 1 đến số vừa nhập vào.<br>")
+    let number = +prompt("Nhập vào 1 số bất kì lớn hơn 0");
+    let sum = 0;
+    if (isNaN(number) || number <= 0) {
+        alert("Vui lòng nhập một số hợp lệ lớn hơn 0");
+    } else {
+        for (let i = 1; i <= number; i++) {
+            sum += i;
+        }
+        document.write("Số vừa nhập là: " + `<b>${number}</b>` + "<br>Tổng các phần tử từ 1 đến " + `${number}` + " => " + `<b>${sum}</b>`);
+    }
+</script>
+</body>
+</html>

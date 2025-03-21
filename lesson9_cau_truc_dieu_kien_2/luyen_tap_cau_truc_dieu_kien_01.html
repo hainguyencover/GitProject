@@ -2,9 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>[*Bài tập] Luyện tập cấu trúc điều kiện 01</title>
 </head>
 <body>
+<h4>[*Bài tập] Luyện tập cấu trúc điều kiện 01</h4>
+<script>
+    // Bài 1:
+    // Nhập hai số a và b, kiểm tra xem a có chia hết cho b hay không.
+    let a = +prompt("Nhập a");
+    let b = +prompt("Nhập b");
+    if (b === 0) {
+        alert("Lỗi: Không thể chia cho 0!");
+    } else if (a % b === 0) {
+        alert(`a = ${a} và b = ${b} thì => a chia hết cho b`);
+    } else {
+        alert(`a = ${a} và b = ${b} thì => a không chia hết cho b`);
+    }
+    // Bài 2:
+    // Nhập tuổi, kiểm tra và in kết quả xem học sinh có đủ điều kiện vào học lớp 10 hay không.
+    let age = +prompt("Nhập số tuổi:");
+    if (age > 15) {
+        alert("Bạn " + age + " tuổi đủ điều kiện vào học lớp 10")
+    } else {
+        alert("Bạn " + age + " tuổi không đủ điều kiện vào học lớp 10")
+    }
+    // Bài 3:
+    // Nhập một số nguyên bất kỳ, in ra kết quả để xác định số đó lớn hơn, nhỏ hơn hay bằng 0.
+    let soNguyen = +prompt("Nhập vào 1 số bất kì:");
+    if (soNguyen > 0) {
+        alert("Số nguyên " + soNguyen + " bạn vừa nhập là số lớn hơn 0.")
+    } else if (soNguyen < 0) {
+        alert("Số nguyên " + soNguyen + " bạn vừa nhập là số nhỏ hơn 0.")
+    } else {
+        alert("Số nguyên " + soNguyen + " bạn vừa nhập là bằng 0")
+    }
+    // Bài 4:
+    // Nhập 3 số nguyên, tìm và in ra giá trị lớn nhất trong ba số đó.
+    let x = +prompt("Nhập số thứ nhất:");
+    let y = +prompt("Nhập số thứ hai:");
+    let z = +prompt("Nhập số thứ ba:");
+    let max = Math.max(x, y, z);
+    alert(max + " là số lớn nhất trong ba số bạn vừa nhập là: " + x + " , " + y + " , " + z)
+
+    // Bài 5:
+    // Xếp loại học lực của học sinh dựa trên:
+    // Điểm bài kiểm tra.
+    // Điểm thi giữa kỳ.
+    // Điểm thi cuối kỳ.
+    let diemkiemtra = parseFloat(prompt("Nhập điểm bài kiểm tra"));
+    let diemGiuaKy = parseFloat(prompt("Nhập điểm bài thi giữa kỳ"));
+    let diemCuoiKy = parseFloat(prompt("Nhập điểm bài thi cuối kỳ"))
+    let diemTrungBinh = (diemkiemtra * 0.2) + (diemGiuaKy * 0.3) + (diemCuoiKy * 0.5);
+    if (diemTrungBinh >= 9) {
+        alert("Xuất sắc")
+    } else if (diemTrungBinh >= 8) {
+        alert("Giỏi")
+    } else if (diemTrungBinh >= 6.5) {
+        alert("Khá")
+    } else if (diemTrungBinh >= 5) {
+        alert("Trung bình")
+    } else {
+        alert("Yếu")
+    }
+    // Bài 6:
+    // Tính hoa hồng nhận được dựa trên mức doanh số bán hàng.
+    let doanhSo = parseFloat(prompt("Nhập doanh số của bạn:"));
+    let tyLe = 0;
+    if (doanhSo >= 10000000) tyLe = 0.2;
+    else if (doanhSo >= 5000000) tyLe = 0.15;
+    else if (doanhSo >= 1000000) tyLe = 0.1;
+    else tyLe = 0.05;
+    let hoaHong = doanhSo * tyLe;
+    alert("Hoa hồng bạn nhận được: " + hoaHong + " VNĐ");
+    // Bài 7:
+    // Tính cước điện thoại cho một hộ gia đình dựa trên các thông số được cung cấp.
+    let soPhutNoiMang = parseFloat(prompt("Nhập số phút:"));
+    let soPhutNgoaiMang = parseFloat(prompt("Nhập số phút"));
+    const phiThueBao = 50000;
+    const giaNoiMang = 1000;
+    const giaNgoaiMang = 1000;
+    let tongCuoc = phiThueBao + (soPhutNoiMang * giaNoiMang) + (soPhutNgoaiMang * giaNgoaiMang)
+    alert("Số cước điện thoại của bạn:" + tongCuoc + " VNĐ");
+</script>
 
 </body>
 </html>

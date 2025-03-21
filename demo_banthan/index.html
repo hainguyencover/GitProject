@@ -9,15 +9,13 @@
 <button onclick="showMessage();">Click Me!</button>
 <script>
     function showMessage() {
-        var x = 10;
-        if( x == 10)
-        {
-            console.log(x);
+        let x = 1, i;
+        for (i = 0; i < 3; i = i + 2) {
+            x = x + 1;
         }
-        else
-        {
-            console.log('hello');
-        }
+        console.log(x);
+        console.log(i);
+
         // console.log(count);
         // var x = 'boom';
         // var y = ['hi', 'hello', 'hey'];
