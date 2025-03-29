@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Sinh bảng cửu chương</title>
+</head>
+<body>
+<h1>[Bài tập] Sinh bảng cửu chương</h1>
+<script>
+    let sout;
+    sout = "<table style='text-align: center; ' border='1' width='300' >"
+    for (let i = 1; i <= 9; i++) {
+        sout = sout + "<tr>";
+        for (let j = 2; j <= 9; j++) {
+            sout = sout + "<td style='padding-right: 50px;text-align: left'>" + j + "x" + i + "=" + i * j + "</td>";
+        }
+        sout = sout + "</tr>";
+    }
+    sout = sout + "</table>";
+    document.write(sout);
+</script>
+</body>
+</html>

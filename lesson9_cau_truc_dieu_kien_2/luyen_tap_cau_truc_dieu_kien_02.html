@@ -6,63 +6,84 @@
 </head>
 <body>
 <h1>[*Bài tập] Luyện tập cấu trúc điều kiện 02</h1>
-<h2>Chuyển độ C sang độ F</h2>
-<table>
-    <tr>
-        <td>
-            <label for="nhietDo"><input type="number" style="width: 200px; margin: 20px" id="nhietDo"></label>
-        </td>
-        <td>
-            <label for="fromCurrency">
-                <select id="fromCurrency" name="nhietDo" style="width:100px; margin: 20px">
-                    <option value="C">C</option>
-                    <option value="F">F</option>
-                </select>
-            </label>
-        </td>
-        <td>
-            <label for="toCurrency">
-                <select id="toCurrency" name="nhietDo" style="width: 100px ;margin: 20px">
-                    <option value="C">C</option>
-                    <option value="F">F</option>
-                </select>
-            </label>
-        </td>
-        <td>
-            <button type="button" style="width: 100px;margin: 20px" onclick="doiTienTe();">Đổi</button>
-        </td>
+<!--<h3>Bài 1: Ứng dụng chuyển đổi nhiệt độ &deg;C -> &deg;F hoặc ngược lại</h3>-->
+<!--<form action="" method="get">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>Amount</th>-->
+<!--            <th>From Temperature</th>-->
+<!--            <th>To Temperature</th>-->
+<!--            <th></th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <label for="nhietDo"><input type="number" style="width: 200px; margin: 20px" id="nhietDo"></label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <label for="fromTemperature">-->
+<!--                    <select id="fromTemperature" name="nhietDo" style="width:100px; margin: 20px">-->
+<!--                        <option value="C">&deg;C</option>-->
+<!--                        <option value="F">&deg;F</option>-->
+<!--                    </select>-->
+<!--                </label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <label for="toTemperature">-->
+<!--                    <select id="toTemperature" name="nhietDo" style="width: 100px ;margin: 20px">-->
+<!--                        <option value="C">&deg;C</option>-->
+<!--                        <option value="F">&deg;F</option>-->
+<!--                    </select>-->
+<!--                </label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <button type="button" style="width: 100px;margin: 20px" onclick="doiNhietDo();">Convert</button>-->
+<!--            </td>-->
 
-    </tr>
-    <tr>
-        <p id="ketQuaBai1"></p>
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
 
-    </tr>
-</table>
-<script>
-    // Bài 1: Chuyển độ C sang độ F
-    function doiNhietDo() {
-        let amount = parseFloat(document.getElementById("nhietDo").value);
-        let fromCurrency = document.getElementById("fromCurrency").value;
-        let toCurrency = document.getElementById("toCurrency").value;
-        let nhietDoF = 0;
-        let nhietDoC = 0;
-        // Kiểm tra nếu người dùng không nhập số
-        if (isNaN(amount) || amount <= 0) {
-            document.getElementById("ketQuaBai1").innerHTML = "Vui lòng nhập số nhiệt độ hợp lệ!";
-            return;
-        }
-        let F =(9 * C) / 5 + 32;
-        // Xử lý chuyển đổi tiền tệ
-        if (fromCurrency === "C" && toCurrency === "F") {
-            nhietDoF = (9 * C) / 5 + 32;
-        } else if (fromCurrency === "F" && toCurrency === "C") {
-            nhietDoC = ;
-        } else {
-            convertedAmount = amount;
-        }
 
-        document.getElementById("ketQuaBai1").innerHTML = `Kết quả: ${convertedAmount} ${toCurrency}`;
-    }
+
+<!--<h3>Bài 2: Chuyển từ mét sang feet: ft =m * 3.2808</h3>-->
+<!--<form action="" method="get">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>Amount</th>-->
+<!--            <th>From Unit</th>-->
+<!--            <th>To Unit</th>-->
+<!--            <th></th>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <label for="donVi"><input type="number" style="width: 200px; margin: 20px" id="donVi"></label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <label for="fromUnit">-->
+<!--                    <select id="fromUnit" name="donVi" style="width:100px; margin: 20px">-->
+<!--                        <option value="Meter">Meter</option>-->
+<!--                        <option value="Feet">Feet</option>-->
+<!--                    </select>-->
+<!--                </label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <label for="toUnit">-->
+<!--                    <select id="toUnit" name="donVi" style="width: 100px ;margin: 20px">-->
+<!--                        <option value="Meter">Meter</option>-->
+<!--                        <option value="Feet">Feet</option>-->
+<!--                    </select>-->
+<!--                </label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <button type="button" style="width: 100px;margin: 20px" onclick="doiDonVi();">Convert</button>-->
+<!--            </td>-->
+
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+
+<p id="ketQua" style="font-size: 18px; margin: 20px; font-weight: bold;"></p>
+<script src="script.js">
 </script>
 </body>
 </html>

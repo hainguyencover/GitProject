@@ -43,28 +43,7 @@
 </form>
 <p id="ketQua" style="font-size: 18px; margin: 20px; font-weight: bold;"></p>
 <script>
-    function doiTienTe() {
-        let amount = parseFloat(document.getElementById("tienTe").value);
-        let fromCurrency = document.getElementById("fromCurrency").value;
-        let toCurrency = document.getElementById("toCurrency").value;
-        let convertedAmount = 0;
-        // Kiểm tra nếu người dùng không nhập số
-        if (isNaN(amount) || amount <= 0) {
-            document.getElementById("ketQua").innerHTML = "Vui lòng nhập số tiền hợp lệ!";
-            return;
-        }
 
-        // Xử lý chuyển đổi tiền tệ
-        if (fromCurrency === "VN" && toCurrency === "USD") {
-            convertedAmount = amount * 0.00004; // 1 VNĐ = 0.00004 USD
-        } else if (fromCurrency === "USD" && toCurrency === "VN") {
-            convertedAmount = amount * 23000; // 1 USD = 23,000 VNĐ
-        } else {
-            convertedAmount = amount; // Trường hợp chọn cùng một loại tiền tệ
-        }
-
-        document.getElementById("ketQua").innerHTML = `Kết quả: ${convertedAmount} ${toCurrency}`;
-    }
 </script>
 </body>
 </html>
