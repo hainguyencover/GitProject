@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Sử dụng các hàm có sẵn của mảng</title>
+</head>
+<body>
+<h1>[Bài tập] Sử dụng các hàm có sẵn của mảng</h1>
+
+<script>
+    document.write("Bài 1: Nối các phần tử trong mảng thành chuỗi<br>");
+    let myColor = ["Red", "Green", "White", "Black"];
+    document.write(`"${myColor.join()}"` + "<br>");
+
+    document.write("Bài 2: Chèn dấu \"-\" giữa các số chẵn<br>");
+    let myNumbers = [0, 2, 5, 4, 6, 8]
+    document.write("Đầu vào: " + myNumbers.join("") + "<br>")
+    let result = "";
+    for (let i = 0; i < myNumbers.length; i++) {
+        result += myNumbers[i];
+        if (myNumbers[i] % 2 === 0 && myNumbers[i + 1] % 2 === 0) {
+            result += "-";
+        }
+    }
+    document.write("Kết quả: " + result + "<br>");
+
+    document.write("Bài 3: Chuyển đổi chữ thường sang chữ hoa và ngược lại<br>")
+    let myText = prompt("Nhập 1 chuỗi bất kì  ");
+    let arr = myText.split("");
+    document.write("Đầu vào: " + arr.join("") + "<br>");
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 'A' && arr[i] <= 'Z') {
+            arr[i] = arr[i].toLowerCase(); // Chữ hoa -> Chữ thường
+        } else if (arr[i] >= 'a' && arr[i] <= 'z') {
+            arr[i] = arr[i].toUpperCase(); // Chữ thường -> Chữ hoa
+        }
+    }
+    let ketQua = arr.join("") // Ghép mảng lại thành chuỗi
+    document.write("Kết quả: " + ketQua);
+</script>
+</body>
+</html>

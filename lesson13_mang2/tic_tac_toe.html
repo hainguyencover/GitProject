@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Tic tac toe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 80px;
+            height: 80px;
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            height: 100%;
+            font-size: 24px;
+            cursor: pointer;
+            border: 2px solid black;
+            background-color: white;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>[Bài tập] Tic tac toe</h1>
+<h2>Game TIC TAC TOE</h2>
+<p>Nhập tên hai người chơi: </p>
+<input type="text" id="player1" placeholder="Người chơi 1">
+<input type="text" id="player2" placeholder="Người chơi 2">
+<input type="button" onclick="startGame()" value="Bắt đầu" style="margin-bottom: 30px"/>
+<table>
+    <tr>
+        <td>
+            <button onclick="makeMove(0, 0)"></button>
+        </td>
+        <td>
+            <button onclick="makeMove(0, 1)"></button>
+        </td>
+        <td>
+            <button onclick="makeMove(0, 2)"></button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="makeMove(1, 0)"></button>
+        </td>
+        <td>
+            <button onclick="makeMove(1, 1)"></button>
+        </td>
+        <td>
+            <button onclick="makeMove(1, 2)"></button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button onclick="makeMove(2, 0)"></button>
+        </td>
+        <td>
+            <button onclick="makeMove(2, 1)"></button>
+        </td>
+        <td>
+            <button onclick="makeMove(2, 2)"></button>
+        </td>
+    </tr>
+</table>
+<p id="result"></p>
+<script>
+    let board;
+    let player1, player2;
+    let currentPlayer, playerSymbol;
+    let firstMovePlayer;
+    let gameStarted = false;
+
+    function startGame() {
+        let p1 = document.getElementById("player1").value.trim();
+        let p2 = document.getElementById("player2").value.trim();
+
+        if (!p1 || !p2) {
+            alert("Vui lòng nhập tên cả hai người chơi!");
+            return;
+        }
+
+        // Nếu đây là lần đầu tiên bắt đầu, xác định ai đi trước
+        if (!player1 || !player2) {
+            player1 = p1;
+            player2 = p2;
+            firstMovePlayer = (player1.toLowerCase() < player2.toLowerCase()) ? player1 : player2;
+        } else {
+            // Đổi lượt đi trước cho ván tiếp theo
+            firstMovePlayer = (firstMovePlayer === player1) ? player2 : player1;
+        }
+
+        currentPlayer = firstMovePlayer;
+        playerSymbol = "X";
+
+        board = [
+            ["", "", ""],
+            ["", "", ""],
+            ["", "", ""]
+        ];
+        gameStarted = true;
+        document.getElementById("result").innerText = `Người chơi đi trước: ${currentPlayer} (X - Đỏ)`;
+        resetBoard();
+    }
+
+    function makeMove(row, col) {
+        if (!gameStarted) {
+            alert("Trò chơi chưa bắt đầu! Nhấn 'Bắt đầu' để chơi.");
+            return;
+        }
+
+        if (board[row][col] !== "") return;
+
+        let btn = document.getElementsByTagName("table")[0].rows[row].cells[col].children[0];
+        board[row][col] = playerSymbol;
+        btn.innerText = playerSymbol;
+        btn.style.color = (playerSymbol === "X") ? "red" : "blue";
+
+        if (checkWinner()) {
+            document.getElementById("result").innerText = `🎉 ${currentPlayer} thắng cuộc!`;
+            setTimeout(startGame, 2000); // Xóa bàn cờ và chơi lại sau 2 giây
+            return;
+        }
+
+        switchPlayer();
+    }
+
+    function switchPlayer() {
+        currentPlayer = (currentPlayer === player1) ? player2 : player1;
+        playerSymbol = (playerSymbol === "X") ? "O" : "X";
+        document.getElementById("result").innerText = `Lượt của: ${currentPlayer} (${playerSymbol})`;
+    }
+
+    function checkWinner() {
+        let winPatterns = [
+            [[0, 0], [0, 1], [0, 2]],
+            [[1, 0], [1, 1], [1, 2]],
+            [[2, 0], [2, 1], [2, 2]],
+            [[0, 0], [1, 0], [2, 0]],
+            [[0, 1], [1, 1], [2, 1]],
+            [[0, 2], [1, 2], [2, 2]],
+            [[0, 0], [1, 1], [2, 2]],
+            [[0, 2], [1, 1], [2, 0]]
+        ];
+
+        for (let pattern of winPatterns) {
+            let [a, b, c] = pattern;
+            if (board[a[0]][a[1]] &&
+                board[a[0]][a[1]] === board[b[0]][b[1]] &&
+                board[a[0]][a[1]] === board[c[0]][c[1]]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function resetBoard() {
+        let buttons = document.querySelectorAll("table button");
+        buttons.forEach(button => {
+            button.innerText = "";
+            button.style.color = "black";
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Ứng dụng vui Faking Textarea on Typing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            font-size: 20px;
+            text-align: center;
+            width: 400px;
+            padding: 5px;
+            height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>[*Bài tập] Ứng dụng vui Faking Textarea on Typing</h1>
+<h3>Nhập bất kỳ chuỗi nào</h3>
+<input type="text" id="inputField" autofocus>
+
+<script>
+    const fixedText = "Tôi là một sinh viên mới học JavaScript!";
+    const chars = fixedText.split(""); // Chuyển thành mảng ký tự
+    let index = 0;
+
+    document.getElementById("inputField").addEventListener("input", function (event) {
+        event.preventDefault(); // Ngăn nhập ký tự thật
+        this.value = chars.slice(0, index + 1).join(""); // Hiển thị dần chữ cố định
+
+        if (index < chars.length - 1) {
+            index++; // Tăng chỉ số để hiện ký tự tiếp theo
+        }
+    });
+</script>
+</body>
+</html>
