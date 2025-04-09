@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Luyện tập tạo và sử dụng hàm 01</title>
+</head>
+<!--<body onload="alertMessage()">-->
+<!--<body onload="alertTang(5);">-->
+<!--<body onload="soSanhThamSo(10, 2)">-->
+<!--<body onload="addNumber()">-->
+<body onload="searchStar()">
+<h1>[Bài tập] Luyện tập tạo và sử dụng hàm 01</h1>
+
+<script>
+    // Bài 1:
+    function alertMessage(){
+        alert("Xin chào")
+    }
+
+
+    // Bài 2:
+
+    function alertTang(num) {
+        alert(num + 1);
+    }
+
+
+    // Bài 3:
+    function soSanhThamSo(a, b) {
+        if (a > b) {
+            alert(a + " > " + b);
+        } else {
+            alert(a + ", " + b + " => Tong cua hai tham so la: " + `${a + b}`)
+        }
+    }
+
+
+    // Bài 4:
+    function addNumber() {
+        firstNumber = 4;
+        secondNumber = 8;
+        result = firstNumber + secondNumber;
+        return result;
+    }
+
+    result = 0;
+    alert("Giá trị của result trước khi gọi hàm: " + result);
+    result = addNumber();
+    alert("Giá trị của result sau khi gọi hàm: " + result);
+
+
+    // Bài 5:
+    // Mảng chứa tên các ngôi sao
+    const stars = ["Polaris", "Aldebaran", "Deneb", "Vega", "Altair", "Dubhe", "Regulus"];
+    // Mảng chứa tên các chòm sao tương ứng
+    const constellations = ["Ursa Minor", "Taurus", "Cygnus", "Lyra", "Aquila", "Ursa Major", "Leo"];
+    function findConstellation(starName) {
+        let index = stars.indexOf(starName);
+        if (index !== -1) {
+            return constellations[index]; // Trả về chòm sao tương ứng
+        } else {
+            return null; // Không tìm thấy
+        }
+    }
+    function searchStar() {
+        let starName = prompt("Nhập tên một ngôi sao:");
+        if (starName) {
+            let constellation = findConstellation(starName);
+            if (constellation) {
+                alert(`Ngôi sao ${starName} thuộc chòm sao ${constellation}.`);
+            } else {
+                alert("Không tìm thấy ngôi sao này trong danh sách.");
+            }
+        } else {
+            alert("Bạn chưa nhập tên ngôi sao!");
+        }
+    }
+</script>
+</body>
+</html>

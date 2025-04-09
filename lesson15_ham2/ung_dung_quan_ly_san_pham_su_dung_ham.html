@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Ứng dụng quản lý sản phẩm sử dụng hàm</title>
+    <style>
+        .btn-edit {
+            background-color: green;
+            color: white;
+            padding: 10px 15px;
+            margin-right: 20px;
+            border: 1px green solid;
+            border-radius: 5px;
+
+        }
+
+        .btn-delete {
+            background-color: green;
+            color: white;
+            margin-left: 20px;
+            padding: 10px 15px;
+            border: 1px green solid;
+            border-radius: 5px;
+
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            padding: 10px 15px;
+            border: 1px green solid;
+            border-radius: 5px;
+        }
+
+        input {
+            padding: 10px 15px;
+            border: 1px black solid;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        tbody {
+            text-align: center;
+            margin: 20px;
+            border: 1px black solid;
+        }
+
+        thead {
+            border: 1px black solid;
+        }
+
+    </style>
+</head>
+<body>
+<h1>[*Bài tập] Ứng dụng quản lý sản phẩm sử dụng hàm</h1>
+<p>Add New Product</p>
+<div>
+    <input type="text" placeholder="New Product" id="txtValue">
+    <button type="button" value="Add" id="btnAdd" onclick="btnAdd();">Add</button>
+</div>
+<p>Display All Product</p>
+
+<table>
+    <thead>
+    <tr>
+        <th style="width: 100px;height: 50px">STT</th>
+        <th style="width: 500px;height: 50px">Tên Sản Phẩm</th>
+        <th style="width: 500px;height: 50px">Hành Động</th>
+    </tr>
+    </thead>
+    <tbody id="result" style="height: 50px"></tbody>
+</table>
+<p id="soLuong" style="color: black;font-weight: bold"></p>
+<script>
+    let index = 0;
+    let danhSach = [];
+    let isEditing = false;
+    let editIndex = -1;
+
+    function btnAdd() {
+        let inputText = document.getElementById("txtValue").value;
+        let btn = document.getElementById("btnAdd");
+
+        if (inputText.trim() !== "") {
+            if (isEditing) {
+                // Nếu đang sửa, cập nhật lại giá trị
+                danhSach[editIndex] = inputText;
+                isEditing = false;
+                btn.textContent = "Add"; // Đổi lại thành nút Add
+                alert("Đã sửa thành công!");
+            } else {
+                // Nếu không, thêm mới vào danh sách
+                danhSach.push(inputText);
+                alert("Đã thêm thành công!");
+            }
+            document.getElementById("txtValue").value = "";
+            hienThiDanhSach();
+        }
+
+    }
+
+    function hienThiDanhSach() {
+        let resultDS = document.getElementById("result");
+        resultDS.innerHTML = "";//xoa noi dung cu
+
+        danhSach.forEach((item, index) => {   // item: hien thi san pham, index:hien thi so
+            let row = resultDS.insertRow(); // Thêm dòng mới vào bảng
+
+            // Nếu index là số chẵn, đổi màu nền thành gray
+            if (index % 2 === 0) {
+                row.style.backgroundColor = "rgba(172,172,172,0.5)";
+                row.style.color = "white"; // Chữ trắng để dễ nhìn
+            }
+
+            let cellIndex = row.insertCell(0);
+            cellIndex.textContent = index + 1; // Số thứ tự
+
+            let cellName = row.insertCell(1);
+            cellName.textContent = item; // Tên sản phẩm
+
+            let cellActions = row.insertCell(2);
+            let btnSua = document.createElement("button");
+            btnSua.textContent = "Sửa";
+            btnSua.classList.add("btn-edit"); // Thêm class cho nút Sửa
+            btnSua.onclick = function () {
+                suaSanPham(index);
+            };
+
+            let btnXoa = document.createElement("button");
+            btnXoa.textContent = "Xóa";
+            btnXoa.classList.add("btn-delete"); // Thêm class cho nút Xóa
+            btnXoa.onclick = function () {
+                xoaSanPham(index);
+            };
+
+            cellActions.appendChild(btnSua);
+            cellActions.appendChild(btnXoa);
+
+            // Cập nhật số lượng sản phẩm
+            document.getElementById("soLuong").textContent = `Số lượng sản phẩm: ${danhSach.length}`;
+        })
+
+
+    }
+
+    function xoaSanPham(index) {
+        let confirmDelete = confirm("Bạn có chắc muốn xóa không?");
+        if (confirmDelete) {
+            danhSach.splice(index, 1);
+            alert("Đã xóa thành công!");
+            hienThiDanhSach();
+        } else {
+            alert("Xóa thất bại!");
+        }
+    }
+
+    function suaSanPham(index) {
+        document.getElementById("txtValue").value = danhSach[index]; // Đưa giá trị lên ô nhập
+        document.getElementById("btnAdd").textContent = "Edit"; // Đổi nút thành Edit
+        isEditing = true;
+        editIndex = index;
+    }
+
+</script>
+</body>
+</html>

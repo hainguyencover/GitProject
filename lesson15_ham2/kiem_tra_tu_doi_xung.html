@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Kiểm tra từ đối xứng</title>
+</head>
+<body>
+<h1>[*Bài tập] Kiểm tra từ đối xứng</h1>
+<input type="text" id="inputString" placeholder="Nhập từ cần kiểm tra">
+<button onclick="checkPalindrome()">Kiểm tra</button>
+<p id="result"></p>
+<script>
+    function isPalindrome(s) {
+        // Kiểm tra nếu đầu vào không phải là chuỗi hoặc là chuỗi rỗng
+        if (typeof s !== "string" || s.trim() === "") {
+            alert("Vui lòng nhập một chuỗi hợp lệ!");
+            return false;
+        }
+        // Nếu chuỗi có 0 hoặc 1 ký tự, chắc chắn là palindrome
+        if (s.length <= 1) {
+            return true;
+        }
+        // Nếu ký tự đầu và ký tự cuối không giống nhau → không phải palindrome
+        if (s[0] !== s[s.length - 1]) {
+            return false;
+        }
+        // Đệ quy kiểm tra phần chuỗi còn lại (bỏ ký tự đầu và cuối)
+        return isPalindrome(s.slice(1, -1));
+    }
+
+    function checkPalindrome() {
+        let input = document.getElementById("inputString").value;
+        let resultElement = document.getElementById("result");
+
+        if (isPalindrome(input)) {
+            resultElement.innerHTML = `✅ <b>"${input}"</b> là một từ đối xứng!`;
+            resultElement.style.color = "green";
+        } else {
+            resultElement.innerHTML = `❌ <b>"${input}"</b> không phải là từ đối xứng!`;
+            resultElement.style.color = "red";
+        }
+    }
+</script>
+</body>
+</html>

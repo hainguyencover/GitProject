@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Hàm kiểm tra số nguyên tố</title>
+</head>
+<body>
+<h1>[Bài tập] Hàm kiểm tra số nguyên tố</h1>
+<script>
+    let number = parseInt(prompt("Nhap so can check: "));
+    if (isNaN(number)) {
+        alert("Vui lòng nhập một số hợp lệ!");
+    } else {
+        if (isPrime(number)) {
+            alert(number + " là số nguyên tố.");
+        } else {
+            alert(number + " không phải là số nguyên tố.");
+        }
+    }
+
+    function isPrime(number) {
+        if (number < 2) return false;
+        for (let i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i === 0) return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

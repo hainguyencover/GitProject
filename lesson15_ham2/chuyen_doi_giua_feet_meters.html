@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Chuyển đổi giữa feet và meters</title>
+</head>
+<body>
+<h1>[Bài tập] Chuyển đổi giữa feet và meters</h1>
+<script>
+    let foot = parseFloat(prompt("Nhap vao feet: "));
+    let meter = parseFloat(prompt("Nhap vao meters: "));
+    if (isNaN(foot) || isNaN(meter)) {
+        alert("Vui long nhap mot so hop le!");
+    } else {
+        footToMeter(foot);
+        meterToFeet(meter)
+    }
+
+    function footToMeter(foot) {
+        let meters = 0.305 * foot;
+        document.write(foot + " feet" + " = " + meters + " meters<br>");
+    }
+
+    function meterToFeet(meter) {
+        let foots = 3.279 * meter
+        document.write(meter + " meters" + " = " + foots + " feet");
+    }
+</script>
+</body>
+</html>

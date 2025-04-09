@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Luyện tập tạo và sử dụng hàm 02</title>
+</head>
+<body>
+
+<h1>[Bài tập] Luyện tập tạo và sử dụng hàm 02</h1>
+<button style="margin-bottom: 20px" type="button" value="Bài 1" onclick="bai1()">Bài 1: Tính bình phương</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 2" onclick="bai2()">Bài 2: Tính chu vi và diện tích hình
+    tròn
+</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 3" onclick="bai3()">Bài 3: Tính giai thừa</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 4" onclick="bai4()">Bài 4: Kiểm tra xem ký tự nhập vào có
+    phải là
+    ký tự số không
+</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 5" onclick="bai5()">Bài 5: Tìm số nguyên nhỏ nhất</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 6" onclick="bai6()">Bài 6: Kiếm tra ký tự nguyên âm
+</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 7" onclick="bai7()">Bài 7: Đổi chỗ 2 nguyên tố</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 8" onclick="bai8()">Bài 8: Đổi chiều mảng</button>
+<br>
+<button style="margin-bottom: 20px" type="button" value="Bài 9" onclick="bai9()">Bài 9: Kiểm tra ký tự trong mảng
+</button>
+<br>
+<script>
+    // Bai1:
+    function binhPhuong(num) {
+        return num * num;
+    }
+
+    function bai1() {
+        let so = prompt("Nhập một số để tính bình phương:");
+        if (so !== null && so.trim() !== "" && !isNaN(so)) {
+            so = Number(so);
+            let ketqua = binhPhuong(so);
+            document.write("Bình phương của " + so + " = " + ketqua);
+        } else {
+            document.write("Vui lòng nhập một số hợp lệ!");
+        }
+    }
+
+    // Bai2:
+    function tinhDienTich(r) {
+        return Math.PI * r * r;
+    }
+
+    function tinhChuVi(r) {
+        return 2 * Math.PI * r;
+    }
+
+    function bai2() {
+        let input = prompt("Nhập bán kính hình tròn:");
+        if (input !== null && input.trim() !== "" && !isNaN(input) && Number(input) > 0) {
+            let r = Number(input);
+            let dienTich = tinhDienTich(r);
+            let chuVi = tinhChuVi(r);
+
+            document.write(`<h2>Bán kính: ${r}</h2>`);
+            document.write(`<p>Diện tích: ${dienTich.toFixed(2)}</p>`);
+            document.write(`<p>Chu vi: ${chuVi.toFixed(2)}</p>`);
+        } else {
+            document.write("<p>Vui lòng nhập một bán kính hợp lệ!</p>");
+        }
+    }
+
+    // Bai3:
+    function tinhGiaiThua(n) {
+        if (n < 0) return "Không có giai thừa cho số âm!";
+        let giaiThua = 1;
+        for (let i = 1; i <= n; i++) {
+            giaiThua *= i;
+        }
+        return giaiThua;
+    }
+
+    function bai3() {
+        let input = prompt("Nhập một số nguyên để tính giai thừa:");
+        if (input !== null && input.trim() !== "" && !isNaN(input) && Number.isInteger(Number(input)) && Number(input) >= 0) {
+            let n = Number(input);
+            let ketQua = tinhGiaiThua(n);
+            document.write(`<h2>Giai thừa của ${n} là: ${ketQua}</h2>`);
+        } else {
+            document.write("<p>Vui lòng nhập một số nguyên không âm hợp lệ!</p>");
+        }
+    }
+
+    // Bai4:
+    function laKyTuSo(kyTu) {
+        return /^\d$/.test(kyTu);  // Kiểm tra nếu là số (0-9) thì trả về true
+    }
+
+    function bai4() {
+        let kyTu = prompt("Nhập một ký tự để kiểm tra:");
+        if (kyTu !== null && kyTu.length === 1) { // Kiểm tra chỉ nhập 1 ký tự
+            if (laKyTuSo(kyTu)) {
+                alert(`"${kyTu}" là ký tự số!`);
+            } else {
+                alert(`"${kyTu}" không phải là ký tự số!`);
+            }
+        } else {
+            alert("Vui lòng nhập một ký tự duy nhất!");
+        }
+    }
+
+    // Bai5:
+    function timSoNhoNhat(a, b, c) {
+        return Math.min(a, b, c); // Sử dụng Math.min() để tìm giá trị nhỏ nhất
+    }
+
+    function bai5() {
+        let so1 = parseInt(prompt("Nhập số nguyên thứ nhất:"));
+        let so2 = parseInt(prompt("Nhập số nguyên thứ hai:"));
+        let so3 = parseInt(prompt("Nhập số nguyên thứ ba:"));
+
+        // Kiểm tra nếu giá trị nhập vào là số nguyên hợp lệ
+        if (!isNaN(so1) && !isNaN(so2) && !isNaN(so3)) {
+            let ketQua = timSoNhoNhat(so1, so2, so3);
+            alert(`Số nguyên nhỏ nhất trong ba số ${so1}, ${so2}, ${so3} là: ${ketQua}`);
+        } else {
+            alert("Vui lòng nhập ba số nguyên hợp lệ!");
+        }
+    }
+
+    // Bai6:
+    function laSoNguyenDuong(n) {
+        return Number.isInteger(n) && n > 0;
+    }
+
+    function bai6() {
+        let so = parseFloat(prompt("Nhập một số để kiểm tra:"));
+
+        if (!isNaN(so)) {
+            if (laSoNguyenDuong(so)) {
+                alert(`${so} là số nguyên dương!`);
+            } else {
+                alert(`${so} không phải là số nguyên dương!`);
+            }
+        } else {
+            alert("Vui lòng nhập một số hợp lệ!");
+        }
+    }
+
+    // Bai7:
+    function doiChoHaiSo(a, b) {
+        console.log(`Trước khi đổi chỗ: a = ${a}, b = ${b}`);
+
+        // Sử dụng biến tạm để hoán đổi giá trị
+        let temp = a;
+        a = b;
+        b = temp;
+
+        console.log(`Sau khi đổi chỗ: a = ${a}, b = ${b}`);
+        return [a, b]; // Trả về mảng chứa hai số sau khi đổi chỗ
+    }
+
+    function bai7() {
+        let so1 = parseInt(prompt("Nhập số nguyên thứ nhất:"));
+        let so2 = parseInt(prompt("Nhập số nguyên thứ hai:"));
+
+        if (!isNaN(so1) && !isNaN(so2)) {
+            let [newSo1, newSo2] = doiChoHaiSo(so1, so2);
+            alert(`Ban đầu: Số 1 = ${so1} , Số 2 = ${so2} \nSau khi đổi chỗ: Số 1 = ${newSo1} , Số 2 = ${newSo2}`);
+        } else {
+            alert("Vui lòng nhập hai số nguyên hợp lệ!");
+        }
+    }
+
+    // Bai8:
+    function daoNguocMang(arr) {
+        return arr.reverse();
+    }
+
+    function bai8() {
+        let input = prompt("Nhập các số nguyên, cách nhau bằng dấu phẩy:");
+
+        if (input) {
+            let arr = input.split(",").map(Number); // Chuyển chuỗi thành mảng số nguyên
+            if (arr.every(num => !isNaN(num))) {
+                let arrDaoNguoc = daoNguocMang(arr);
+                alert("Mảng sau khi đảo ngược: " + arrDaoNguoc.join(", "));
+            } else {
+                alert("Vui lòng nhập các số nguyên hợp lệ!");
+            }
+        } else {
+            alert("Bạn chưa nhập dữ liệu!");
+        }
+    }
+
+    // Bai9:
+    function kiemTraKyTu(mang, kyTu) {
+        let count = mang.filter(char => char === kyTu).length;
+        return count > 0 ? count : -1;
+    }
+
+    function bai9() {
+        let inputArray = prompt("Nhập một chuỗi ký tự, cách nhau bằng dấu phẩy:");
+        let inputChar = prompt("Nhập ký tự cần kiểm tra:");
+
+        if (inputArray && inputChar) {
+            let arr = inputArray.split(",").map(char => char.trim()); // Tạo mảng từ chuỗi nhập vào
+            let result = kiemTraKyTu(arr, inputChar);
+
+            if (result !== -1) {
+                alert(`Ký tự "${inputChar}" xuất hiện ${result} lần trong mảng.`);
+            } else {
+                alert(`Ký tự "${inputChar}" không có trong mảng.`);
+            }
+        } else {
+            alert("Vui lòng nhập đầy đủ dữ liệu!");
+        }
+    }
+</script>
+</body>
+</html>
