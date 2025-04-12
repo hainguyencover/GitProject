@@ -7,9 +7,3 @@
 // two[two.length - 1] = 7;
 // alert(two);
 
-
-let girls = ["Lan", "Hoa", "Dao", "Huong"];
-let boys = ["Ti", "Teo", "Tuat", "Hoi"];
-for (let i = 0; i < girls.length; i++) {
-    console.log(girls[i] + " " + boys[Math.floor(Math.random() * i)])
-}

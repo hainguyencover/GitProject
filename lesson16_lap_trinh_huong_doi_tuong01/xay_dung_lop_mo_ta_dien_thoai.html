@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả điện thoại</title>
+</head>
+<body>
+<script>
+    function Mobile(name) {
+        this.name = name;
+        this.trang_thai_pin = 100;
+        this.trang_thai_bat_tat = false;
+        this.tin_nhan_dang_soan_thao = [];
+        this.hop_thu_den = [];
+        this.tin_nhan_da_gui = [];
+
+        //
+        this.bat_dien_thoai = function () {
+            this.trang_thai_bat_tat = true;
+            console.log(`${this.name} da bat`);
+        }
+        this.tat_dien_thoai = function () {
+            this.trang_thai_bat_tat = false;
+            console.log(`${this.name} da tat`);
+        }
+        this.sac_pin = function (amount) {
+            this.trang_thai_pin = Math.min(100, this.trang_thai_pin + amount);
+            console.log(`${this.name} dang sac. Pin hien tai: ${this.trang_thai_pin}`);
+        }
+        this.hien_trang_thai = function () {
+            console.log(`${this.name} ${this.trang_thai_bat_tat ? "dang bat" : "dang tat"}, Pin: ${this.trang_thai_pin}% `)
+        }
+        this.soan_tin_nhan = function (content) {
+            if (!this.co_the_su_dung()) return;
+            this.tin_nhan_dang_soan_thao.push(content);
+            this.tru_pin();
+            console.log(`${this.name} da soan: "${content}"`)
+        }
+        this.gui_tin_nhan = function (receiver) {
+            if (!this.co_the_su_dung()) return;
+            if (this.tin_nhan_dang_soan_thao.length === 0) {
+                console.log(`${this.name} khong co tin nhan de gui`);
+                return;
+            }
+            const message = this.tin_nhan_dang_soan_thao.pop();
+            this.tin_nhan_da_gui.push(message);
+            receiver.nhan_tin_nhan(message);
+            this.tru_pin();
+            console.log(`${this.name} da gui tin nhan: ${message} cho ${receiver.name}`)
+        }
+        this.nhan_tin_nhan = function (message) {
+            this.hop_thu_den.push(message);
+        }
+        this.xem_tin_nhan_trong_hop_thu_den = function () {
+            if (!this.co_the_su_dung()) return;
+            this.tru_pin();
+            console.log(`${this.name} - Hop thu den: `);
+            if (this.hop_thu_den.length === 0) {
+                console.log("Khong co tin nhan");
+            } else {
+                this.hop_thu_den.forEach((msg, i) => {
+                    console.log(`${i + 1}.${msg}`);
+                })
+            }
+        }
+        this.xem_tin_nhan_da_gui = function () {
+            if (!this.co_the_su_dung()) return;
+            this.tru_pin();
+            console.log(`${this.name} - Tin nhan da gui: `);
+            if (this.tin_nhan_da_gui.length === 0) {
+                console.log("Chua gui tin nhan nao.");
+            } else {
+                this.tin_nhan_da_gui.forEach((msg, i) => {
+                    console.log(`${i + 1}.${msg}`);
+                })
+            }
+        }
+
+        this.co_the_su_dung = function () {
+            if (!this.trang_thai_bat_tat) {
+                console.log(`${this.name} dang tat, khong the su dung.`);
+                return false;
+            }
+            if (this.trang_thai_pin <= 0) {
+                console.log(`${this.name} het pin.`);
+                return false;
+            }
+            return true;
+        }
+        this.tru_pin = function () {
+            this.trang_thai_pin = Math.max(0, this.trang_thai_pin - 1);
+        }
+
+
+    }
+
+    const nokia = new Mobile("Nokia");
+    const iphone = new Mobile("iPhone");
+
+    nokia.bat_dien_thoai();
+    iphone.bat_dien_thoai();
+
+    nokia.soan_tin_nhan("Hello iPhone, mình là Nokia đây!");
+    nokia.gui_tin_nhan(iphone);
+
+    iphone.xem_tin_nhan_trong_hop_thu_den();
+</script>
+</body>
+</html>

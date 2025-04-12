@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả Temperature</title>
+</head>
+<body>
+<script>
+    function Temperature(celsius) {
+        if (celsius < -273.15) {
+            alert("Nhiệt độ không thể thấp hơn -273.15°C (độ không tuyệt đối).");
+        }
+        this.celsius = celsius;
+        this.toFahrenheit = function () {
+            return this.celsius * 9 / 5 + 32;
+        }
+        this.toKelvin = function () {
+            return this.celsius + 273.15;
+        }
+    }
+
+    const temp = new Temperature(25);
+    console.log("Nhiệt độ (°C):", temp.celsius);
+    console.log("Fahrenheit:", temp.toFahrenheit() + "°F");
+    console.log("Kelvin:", temp.toKelvin() + "°K");
+</script>
+</body>
+</html>
