@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Phát triển trò chơi cờ ca-ro</title>
 </head>
 <body>
-$END$
+<div id="banCo"></div>
 </body>
 </html>
+<script>
+    let banCo;
+    banCo = "<table style='position: absolute;padding: 10px;border: 2px solid blue; border-collapse: collapse' border='1'  >"
+    for (let i = 0; i < 20; i++) {
+        banCo += "<tr>";
+        for (let j = 0; j < 20; j++) {
+            banCo += "<td style='padding: 15px'></td>"
+        }
+        banCo += "</tr>";
+    }
+    banCo += "</table>";
+    document.write(banCo);
+</script>

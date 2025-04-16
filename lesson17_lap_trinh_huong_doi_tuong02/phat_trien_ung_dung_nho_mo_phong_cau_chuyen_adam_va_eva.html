@@ -1,10 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Phát triển ứng dụng nhỏ mô phỏng câu chuyện Adam và Eva</title>
 </head>
 <body>
-$END$
+
 </body>
 </html>
+<script>
+
+    let Apple = function () {
+        let weight = 10;
+        this.decrease = function () {
+            if (weight > 0) {
+                weight--;
+            }
+        }
+        this.isEmpty = function () {
+            return weight === 0;
+        }
+
+        this.getWeight = function () {
+            return weight;
+        }
+    }
+    let Human = function () {
+        let name = "";
+        let gender = true;
+        let weight = 50;
+        this.isMale = function () {
+            return gender;
+        }
+        this.setGender = function (g) {
+            gender = g;
+        }
+        this.checkApple = function (apple) {
+            return !apple.isEmpty();
+        }
+        this.eat = function (apple) {
+            if (!apple.isEmpty()) {
+                console.log(`${name} eats a bite of apple 🍎`);
+                apple.decrease();
+                weight++;
+            } else {
+                console.log(`${name} wants to eat, but the apple is gone 😢`);
+            }
+        }
+        this.say = function (msg) {
+            console.log(`${name} says: ${msg}`);
+        }
+        this.setName = function (n) {
+            name = n;
+        }
+        this.getName = function () {
+            return name;
+        }
+
+        this.getWeight = function () {
+            return weight;
+        }
+    }
+
+    let apple = new Apple();
+    let human = new Human();
+    human.setName("Adam");
+    human.setGender(true);
+    console.log(`Thong tin cua nguoi thu nhat: Ten la: ${human.getName()} , Gioi tinh: ${human.isMale()} , Can nang: ${human.getWeight()} `);
+    human.setName("Eva");
+    human.setGender(false);
+    console.log(`Thong tin cua nguoi thu hai: Ten la: ${human.getName()} , Gioi tinh: ${human.isMale()} , Can nang: ${human.getWeight()} `);
+
+    console.log("Cau chuyen:\n  " +
+        "Trong vườn địa đàng, có một cây táo với những quả táo chín mọng.\n  " +
+        "Hai nguoi Adam va Eva gap nhau tro chuyen va an tao cho den het qua:")
+    human.setName("Adam");
+    human.say(`Hello, Eva!`);
+    human.setName("Eva");
+    human.say(`Hi Adam! Let's eat this apple.`);
+    human.setName("Adam");
+    human.say("I'm hungry too!");
+    human.eat(apple);
+    console.log(`Apple weight after eating: ${apple.getWeight()}`)
+    console.log(`${human.getName()} weight: ${human.getWeight()}`); // 51
+    human.setName("Adam");
+</script>
