@@ -3,21 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>[Bài tập] Phát triển trò chơi cờ ca-ro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, serif;
+        }
+
+        #board {
+            position: relative;
+            width: 620px;
+            height: 620px;
+            margin: 20px auto;
+            border: 2px solid blue;
+        }
+
+        .cell {
+            width: 30px;
+            height: 30px;
+            box-sizing: border-box;
+            border: 1px solid #999;
+            position: absolute;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+            background-color: white;
+        }
+
+        .winner {
+            background-color: yellow !important;
+            font-weight: bold;
+        }
+
+        #message {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+            margin-top: 10px;
+        }
+
+        #controls {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #timer {
+            font-size: 16px;
+            color: red;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<div id="banCo"></div>
+<div id="board"></div>
+<div id="message"></div>
+<div id="controls">
+    <button onclick="restartGame()">🔁 Chơi lại</button>
+    <label><input type="checkbox" id="vsAI"> Chơi với máy</label>
+    <div id="timer">⏱️ Thời gian còn: <span id="countdown">10</span> giây</div>
+</div>
 </body>
 </html>
-<script>
-    let banCo;
-    banCo = "<table style='position: absolute;padding: 10px;border: 2px solid blue; border-collapse: collapse' border='1'  >"
-    for (let i = 0; i < 20; i++) {
-        banCo += "<tr>";
-        for (let j = 0; j < 20; j++) {
-            banCo += "<td style='padding: 15px'></td>"
-        }
-        banCo += "</tr>";
-    }
-    banCo += "</table>";
-    document.write(banCo);
-</script>
+<script src="bai_tap_phat_trien_co_ca_ro.js"></script>
