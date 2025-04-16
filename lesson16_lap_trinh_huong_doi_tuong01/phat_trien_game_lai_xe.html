@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Phát triển game lái xe</title>
+    <style>
+        canvas {
+            background-color: #111;
+            display: block;
+            margin: 20px auto;
+            border: 3px solid #fff;
+        }
+
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            color: white;
+            background: #acacac;
+        }
+    </style>
+</head>
+<body>
+<h1>🚗 Game Lái Xe 🚗</h1>
+<p>↑ ↓ ← → để điều hướng – Giữ Ctrl để tăng tốc</p>
+<canvas id="gameCanvas" width="400" height="600"></canvas>
+</body>
+</html>
+<script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // ===== CLASS XE NGƯỜI CHƠI =====
+    class PlayerCar {
+        constructor() {
+            this.width = 50;
+            this.height = 100;
+            this.x = canvas.width / 2 - this.width / 2;
+            this.y = canvas.height - this.height - 10;
+            this.speed = 5;
+        }
+
+        draw() {
+            ctx.fillStyle = "cyan";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+
+        moveLeft() {
+            if (this.x > 0) this.x -= this.speed;
+        }
+
+        moveRight() {
+            if (this.x + this.width < canvas.width) this.x += this.speed;
+        }
+    }
+
+    // ===== CLASS CHƯỚNG NGẠI VẬT =====
+    class Obstacle {
+        constructor() {
+            this.width = 50;
+            this.height = 100;
+            this.x = Math.random() * (canvas.width - this.width);
+            this.y = -this.height;
+            this.speed = 3;
+        }
+
+        draw() {
+            ctx.fillStyle = "red";
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+
+        update() {
+            this.y += this.speed;
+        }
+
+        isOutOfScreen() {
+            return this.y > canvas.height;
+        }
+
+        isColliding(player) {
+            return !(
+                player.x > this.x + this.width ||
+                player.x + player.width < this.x ||
+                player.y > this.y + this.height ||
+                player.y + player.height < this.y
+            );
+        }
+    }
+
+    // ===== KHỞI TẠO =====
+    const player = new PlayerCar();
+    const obstacles = [];
+
+    let gameOver = false;
+
+    // ===== BẮT PHÍM =====
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") player.moveLeft();
+        if (e.key === "ArrowRight") player.moveRight();
+    });
+
+    // ===== VÒNG LẶP GAME =====
+    function gameLoop() {
+        if (gameOver) {
+            ctx.fillStyle = "white";
+            ctx.font = "30px sans-serif";
+            ctx.fillText("💥 Game Over!", 100, 300);
+            return;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        player.draw();
+
+        // Tạo chướng ngại vật mới
+        if (Math.random() < 0.02) {
+            obstacles.push(new Obstacle());
+        }
+
+        // Vẽ và cập nhật chướng ngại vật
+        obstacles.forEach((obs, index) => {
+            obs.update();
+            obs.draw();
+
+            if (obs.isColliding(player)) {
+                gameOver = true;
+            }
+
+            if (obs.isOutOfScreen()) {
+                obstacles.splice(index, 1);
+            }
+        });
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
+</script>
