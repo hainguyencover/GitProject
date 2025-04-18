@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  function compareTriplets(a, b) {
+    let conut = 0;
+    if (a[0] > b[0]) {
+      result = "Alice receives 1 point";
+    } else if (a[0] < b[0]) {
+      result = "Bob receives 1 point";
+    } else if (a[1] > b[1]) {
+      result = "Alice receives 1 point";
+    } else if (a[1] < b[1]) {
+      result = "Bob receives 1 point";
+    } else {
+      result = "Nobody receives a point";
+    }
+    return result;
+  }
+  console.log(compareTriplets([17, 28, 30], [99, 16, 8]));
+</script>
