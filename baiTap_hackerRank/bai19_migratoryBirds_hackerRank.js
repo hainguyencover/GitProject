@@ -37,7 +37,6 @@ function migratoryBirds(arr) {
         maxCount = count5;
         maxType = 5;
     }
-
     return maxType;
 }
 
