@@ -1,0 +1,68 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 650px;
+    margin: auto;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none !important;
+}
+
+button {
+    width: 100%;
+    margin: 5px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.answer-box {
+    display: block;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 8px;
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background 0.2s, border 0.2s;
+}
+
+.answer-box.correct {
+    background-color: #c8e6c9 !important;
+    border-color: #2e7d32;
+}
+
+.answer-box.incorrect {
+    background-color: #ffcdd2 !important;
+    border-color: #c62828;
+}
+
+.answer-box input[type="radio"] {
+    margin-right: 1rem;
+}
+
+#questionButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#questionButtons button {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 6px;
+}

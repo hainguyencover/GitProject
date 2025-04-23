@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h3 class="center-align blue-text text-darken-2">🎯 JavaScript Quiz</h3>
+    <!-- Chọn loại & chủ đề -->
+    <div id="topic-selector" class="card-panel">
+        <!-- Chọn loại -->
+        <div class="input-field">
+            <select id="modeSelector" onchange="loadTopicsByMode()">
+                <option value="" disabled selected>-- Chọn loại --</option>
+                <option value="Lý thuyết">🧠 Lý thuyết</option>
+                <option value="Bài tập">🛠 Bài tập</option>
+            </select>
+        </div>
+        <!-- Chọn chủ đề -->
+        <div class="input-field">
+            <select id="topicDropdown">
+                <option value="" disabled selected>-- Chọn chủ đề --</option>
+            </select>
+        </div>
+        <button class="btn blue" onclick="startQuiz()">Bắt đầu</button>
+    </div>
+    <!-- Làm bài -->
+    <div id="quiz" class="card-panel hidden">
+        <h5 id="questionText"></h5>
+        <img id="questionImage" class="responsive-img" style="max-height: 300px; margin: 10px 0;"  alt=""/>
+        <div id="optionsContainer"></div>
+        <div class="row">
+            <div class="col s4">
+                <button class="btn blue lighten-1" onclick="prevQuestion()">⬅ Lùi</button>
+            </div>
+            <div class="col s4">
+                <button class="btn green" onclick="checkAnswer()">✅ Kiểm tra</button>
+            </div>
+            <div class="col s4">
+                <button class="btn blue lighten-1" onclick="nextQuestion()">➡ Tiếp</button>
+            </div>
+        </div>
+        <div id="questionButtons" class="btn-group"></div>
+    </div>
+    <!-- Kết quả từng câu -->
+    <div id="inlineResult" class="section hidden">
+        <h6 class="green-text">🎯 Kết quả</h6>
+        <p id="inlineScore"></p>
+        <div id="inlineExplanation"></div>
+    </div>
+    <!-- Tổng kết -->
+    <div id="result" class="card-panel hidden">
+        <h5 class="green-text">🎉 Kết quả của bạn:</h5>
+        <p id="scoreText"></p>
+        <div id="explanationList"></div>
+        <button class="btn blue" onclick="showHistory()">📜 Lịch sử</button>
+        <button class="btn red" onclick="resetQuiz()">🔁 Làm lại</button>
+    </div>
+    <!-- Lịch sử -->
+    <div id="history" class="card-panel hidden">
+        <h5>Lịch sử làm bài</h5>
+        <ul id="historyList" class="collection"></ul>
+        <p id="totalTime"></p>
+        <button class="btn red lighten-1" onclick="clearHistory()">🗑️ Xóa</button>
+        <button class="btn grey lighten-1" onclick="resetQuiz()">🔙 Quay lại</button>
+    </div>
+</div>
+<!-- Script -->
+<script src="questions.js"></script>
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
