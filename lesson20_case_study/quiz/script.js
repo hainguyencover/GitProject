@@ -43,7 +43,12 @@ function startQuiz() {
     selectedTopic = topicDropdown.value;
 
     if (!mode || !selectedTopic) {
-        alert("Vui lòng chọn loại và chủ đề.");
+        Swal.fire({
+            title: 'Lỗi',
+            text: 'Vui lòng chọn loại và chủ đề.',
+            icon: 'warning',
+            confirmButtonColor: '#3085d6'
+        });
         return;
     }
 
@@ -103,34 +108,6 @@ function showQuestion() {
     });
 
     renderQuestionButtons();
-    // const q = quizData[currentQuestionIndex];
-    // questionText.textContent = `Câu ${currentQuestionIndex + 1}: ${q.question}`;
-    // optionsContainer.innerHTML = '';
-    //
-    // const savedAnswer = selectedAnswers[currentQuestionIndex];
-    // const correctIndex = q.options.findIndex(opt => opt === q.answer);
-    //
-    // q.options.forEach((opt, idx) => {
-    //     const label = document.createElement("label");
-    //     label.className = "answer-box";
-    //
-    //     // Highlight nếu đã kiểm tra
-    //     if (savedAnswer) {
-    //         if (idx === savedAnswer.correct) {
-    //             label.classList.add("correct");
-    //         } else if (idx === savedAnswer.selected && !savedAnswer.isCorrect) {
-    //             label.classList.add("incorrect");
-    //         }
-    //     }
-    //
-    //     label.innerHTML = `
-    //         <input name="answer" type="radio" value="${idx}" ${savedAnswer?.selected === idx ? 'checked' : ''}/>
-    //         <span>${opt}</span>
-    //     `;
-    //     optionsContainer.appendChild(label);
-    // });
-    //
-    // renderQuestionButtons();
 }
 
 // === Nút chuyển câu hỏi ===
@@ -151,7 +128,15 @@ function prevQuestion() {
 // === Kiểm tra đáp án ===
 function checkAnswer() {
     const selected = document.querySelector('input[name="answer"]:checked');
-    if (!selected) return alert("Vui lòng chọn đáp án.");
+    if (!selected) {
+        Swal.fire({
+            title: 'Thông báo',
+            text: 'Vui lòng chọn đáp án.',
+            icon: 'info',
+            confirmButtonColor: '#3085d6'
+        });
+        return;
+    }
 
     const userAnswer = parseInt(selected.value);
     const question = quizData[currentQuestionIndex];
@@ -167,7 +152,19 @@ function checkAnswer() {
     };
 
     showQuestion(); // Hiển thị lại với màu
-    alert(`✅ Đáp án đúng: ${question.options[correctIndex]}\n📘 ${question.explanation}`);
+    
+    Swal.fire({
+        title: isCorrect ? 'Đúng rồi!' : 'Chưa đúng!',
+        html: `
+            <div class="answer-feedback">
+                <p><strong>Đáp án đúng:</strong> ${question.options[correctIndex]}</p>
+                <p><strong>Giải thích:</strong> ${question.explanation}</p>
+            </div>
+        `,
+        icon: isCorrect ? 'success' : 'error',
+        confirmButtonText: 'Tiếp tục',
+        confirmButtonColor: '#3085d6'
+    });
 
     if (selectedAnswers.filter(a => a !== undefined).length === quizData.length) {
         showResult();
@@ -185,17 +182,24 @@ function showResult() {
         const q = quizData[idx];
         if (ans.isCorrect) score++;
         const item = document.createElement('div');
+        item.className = ans.isCorrect ? 'result-item correct' : 'result-item incorrect';
         item.innerHTML = `
             <strong>Câu ${idx + 1}</strong><br>
-            Bạn chọn: ${q.options[ans.selected]}<br>
-            Đáp án đúng: ${q.options[ans.correct]}<br>
-            <em>Giải thích: ${ans.explanation}</em>
+            <span class="${ans.isCorrect ? 'green-text' : 'red-text'}">
+                <i class="fas ${ans.isCorrect ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                Bạn chọn: ${q.options[ans.selected]}
+            </span><br>
+            <span class="green-text"><i class="fas fa-check"></i> Đáp án đúng: ${q.options[ans.correct]}</span><br>
+            <em><i class="fas fa-info-circle"></i> Giải thích: ${ans.explanation}</em>
             <hr>
         `;
         explanationList.appendChild(item);
     });
 
-    scoreText.textContent = `🎯 Bạn đúng ${score}/${quizData.length} câu. ⏱️ Thời gian làm bài: ${duration} giây.`;
+    scoreText.innerHTML = `
+        <i class="fas fa-bullseye"></i> Bạn đúng <span class="green-text text-darken-2">${score}/${quizData.length}</span> câu. 
+        <i class="fas fa-clock"></i> Thời gian làm bài: <span class="blue-text">${duration} giây</span>.
+    `;
 
     quizDiv.classList.add('hidden');
     resultDiv.classList.remove('hidden');
@@ -225,15 +229,43 @@ function showHistory() {
     history.forEach(entry => {
         const li = document.createElement('li');
         li.className = 'collection-item';
-        li.textContent = `${entry.date} - ${entry.topic} - ${entry.score}/${entry.total} - ${entry.time}s`;
+        li.innerHTML = `
+            <i class="fas fa-calendar-alt"></i> ${entry.date} - 
+            <i class="fas fa-book"></i> ${entry.topic} - 
+            <i class="fas fa-star"></i> ${entry.score}/${entry.total} - 
+            <i class="fas fa-clock"></i> ${entry.time}s
+        `;
         historyList.appendChild(li);
         totalTime += entry.time;
     });
 
-    totalTimeText.textContent = `🧮 Tổng thời gian đã làm: ${totalTime} giây.`;
+    totalTimeText.innerHTML = `<i class="fas fa-calculator"></i> Tổng thời gian đã làm: <b>${totalTime}</b> giây.`;
 
     resultDiv.classList.add('hidden');
     historyDiv.classList.remove('hidden');
+}
+
+// === Xác nhận xoá lịch sử ===
+function confirmClearHistory() {
+    Swal.fire({
+        title: 'Bạn có chắc chắn?',
+        text: "Xóa toàn bộ lịch sử làm bài!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            clearHistory();
+            Swal.fire(
+                'Đã xóa!',
+                'Lịch sử của bạn đã được xóa.',
+                'success'
+            );
+        }
+    });
 }
 
 // === Xoá lịch sử ===
@@ -257,7 +289,9 @@ function renderQuestionButtons() {
         const btn = document.createElement('button');
         const isAnswered = selectedAnswers[i] !== undefined;
         btn.className = `btn-small ${isAnswered ? 'blue lighten-2 white-text' : 'grey lighten-1 black-text'}`;
-        btn.textContent = i + 1;
+        btn.innerHTML = isAnswered ? 
+            `<i class="fas fa-check-circle"></i> ${i + 1}` : 
+            `${i + 1}`;
         btn.onclick = () => {
             currentQuestionIndex = i;
             showQuestion();
@@ -265,6 +299,3 @@ function renderQuestionButtons() {
         questionButtons.appendChild(btn);
     }
 }
-
-
-

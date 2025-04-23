@@ -9,6 +9,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="container">
@@ -29,7 +33,7 @@
                 <option value="" disabled selected>-- Chọn chủ đề --</option>
             </select>
         </div>
-        <button class="btn blue" onclick="startQuiz()">Bắt đầu</button>
+        <button class="btn blue" onclick="startQuiz()"><i class="fas fa-play"></i> Bắt đầu</button>
     </div>
     <!-- Làm bài -->
     <div id="quiz" class="card-panel hidden">
@@ -38,13 +42,13 @@
         <div id="optionsContainer"></div>
         <div class="row">
             <div class="col s4">
-                <button class="btn blue lighten-1" onclick="prevQuestion()">⬅ Lùi</button>
+                <button class="btn blue lighten-1" onclick="prevQuestion()"><i class="fas fa-arrow-left"></i> Lùi</button>
             </div>
             <div class="col s4">
-                <button class="btn green" onclick="checkAnswer()">✅ Kiểm tra</button>
+                <button class="btn green" onclick="checkAnswer()"><i class="fas fa-check"></i> Kiểm tra</button>
             </div>
             <div class="col s4">
-                <button class="btn blue lighten-1" onclick="nextQuestion()">➡ Tiếp</button>
+                <button class="btn blue lighten-1" onclick="nextQuestion()">Tiếp <i class="fas fa-arrow-right"></i></button>
             </div>
         </div>
         <div id="questionButtons" class="btn-group"></div>
@@ -60,16 +64,16 @@
         <h5 class="green-text">🎉 Kết quả của bạn:</h5>
         <p id="scoreText"></p>
         <div id="explanationList"></div>
-        <button class="btn blue" onclick="showHistory()">📜 Lịch sử</button>
-        <button class="btn red" onclick="resetQuiz()">🔁 Làm lại</button>
+        <button class="btn blue" onclick="showHistory()"><i class="fas fa-history"></i> Lịch sử</button>
+        <button class="btn red" onclick="resetQuiz()"><i class="fas fa-redo"></i> Làm lại</button>
     </div>
     <!-- Lịch sử -->
     <div id="history" class="card-panel hidden">
         <h5>Lịch sử làm bài</h5>
         <ul id="historyList" class="collection"></ul>
         <p id="totalTime"></p>
-        <button class="btn red lighten-1" onclick="clearHistory()">🗑️ Xóa</button>
-        <button class="btn grey lighten-1" onclick="resetQuiz()">🔙 Quay lại</button>
+        <button class="btn red lighten-1" onclick="confirmClearHistory()"><i class="fas fa-trash"></i> Xóa</button>
+        <button class="btn grey lighten-1" onclick="resetQuiz()"><i class="fas fa-arrow-left"></i> Quay lại</button>
     </div>
 </div>
 <!-- Script -->
