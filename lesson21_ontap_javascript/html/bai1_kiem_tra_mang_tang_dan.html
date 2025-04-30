@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 1: Kiểm tra mảng tăng dần</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<h1>Bài 1: Kiểm tra mảng tăng dần</h1>
+<pre>
+    Mô tả:
+        Nhập một mảng số từ bàn phím với độ dài n (với n <= 20).
+        Hiển thị mảng sau khi nhập.
+        Kiểm tra xem mảng vừa nhập có phải là mảng tăng dần hay không.
+    Yêu cầu:
+        Nếu mảng là tăng dần thì hiển thị "OK".
+        Nếu mảng không tăng dần thì trả về "NO".
+    Ví dụ:
+        Input: 0,2,4,6,8 -> Output: "OK"
+        Input: 5,10,15,20 -> Output: "OK"
+        Input: 2,4,7,9 -> Output: "OK"
+        Input: 1,5,4,9 -> Output: NO
+    Kỹ năng liên quan:
+        Nhập liệu cơ bản, làm việc với:
+        Mảng (khai báo, nhập phần tử, hiển thị)
+        Vòng lặp
+        Câu lệnh điều kiện
+        Kiểm tra điều kiện trên các phần tử mảng liên tiếp.</pre>
+<input type="text" id="inputNumber" placeholder="Nhập vào mảng số (tối đa 20 số)" size="50">
+<button onclick="checkButton()">Kiểm tra</button>
+<p id="result"></p>
+<script>
+
+    function checkButton() {
+        let isIncreasing = true;
+        let input = document.getElementById("inputNumber").value;
+        let arr = input.split(",").map(x => parseInt(x.trim()));
+        if (input === ""){
+            alert("Vui lòng nhập mảng số.");
+            return;
+        }
+        if (arr.length > 20) {
+            alert("Mảng đã có 20 phần tử, không thể thêm nữa.");
+        }
+        for (let i = 0; i < arr.length - 1; i++) {
+            if (arr[i] >= arr[i + 1]) {
+                isIncreasing = false;
+                break;
+            }
+        }
+        if (isIncreasing) {
+            document.getElementById("result").innerHTML = "<b>OK:</b> Mảng tăng dần<br>" + "Mảng bạn nhập là:" + arr.join(", ");
+        } else {
+            document.getElementById("result").innerHTML = "<b>NO:</b> Mảng không tăng dần<br>" + "Mảng bạn nhập là:" + arr.join(", ");
+        }
+    }
+</script>
+</body>
+</html>

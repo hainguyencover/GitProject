@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5: Tìm số lớn nhất (sau khi xóa 1 chữ số)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1>Bài 5: Tìm số lớn nhất (sau khi xóa 1 chữ số)</h1>
+<pre>
+    Mô tả:
+        Viết một hàm truyền vào 1 tham số n (findMaxNumber(n)).
+        Hàm thực hiện các công việc:
+    Yêu cầu:
+        Kiểm tra xem n có phải là số có 4 chữ số không?
+        Nếu không phải 4 chữ số thì trả về -1.
+        Nếu thỏa mãn là 4 chữ số thì tiếp tục thực hiện công việc:
+                Tìm ra một số có 3 chữ số từ n (bằng cách xóa đi một chữ số bất kỳ của n) để có được 1 số là lớn nhất.
+                Trả về số lớn nhất tìm được.
+    Ví dụ:
+        Input: 923 -> Output: -1
+        Input: 1923 -> Output: 923 (Xóa 1)
+        Input: 9371 -> Output: 971 (Xóa 3)
+    Kỹ năng liên quan:
+        Định nghĩa và sử dụng hàm
+        Kiểm tra điều kiện (số chữ số)
+        Chuyển đổi kiểu dữ liệu (số sang chuỗi để xử lý từng chữ số)
+        Xử lý chuỗi (xóa ký tự), chuyển đổi kiểu dữ liệu (chuỗi sang số)
+        Tìm giá trị lớn nhất trong một tập hợp các giá trị.
+</pre>
+<input type="text" id="inputNumber" placeholder="Nhập vào một số gồm 4 chữ số" size="50">
+<button onclick="findMaxNumber()">Kiểm tra</button>
+<p id="result"></p>
+<script>
+    function findMaxNumber(n) {
+        let input = document.getElementById("inputNumber").value;
+        n = parseInt(input);
+        if (input === "") {
+            alert("Vui lòng nhập vào một số gồm 4 chữ số");
+            return;
+        }
+        if (isNaN(n) || n < 1000 || n > 9999) {
+            document.getElementById("result").innerHTML = "-1";
+
+        } else {
+            let str = n.toString();
+            let maxNumber = -1;
+            for (let i = 0; i < str.length; i++) {
+                let newNumber = parseInt(str.slice(0, i) + str.slice(i + 1));
+                if (newNumber > maxNumber) {
+                    maxNumber = newNumber;
+                }
+            }
+            document.getElementById("result").innerHTML = maxNumber;
+
+        }
+    }
+</script>
+</body>
+</html>

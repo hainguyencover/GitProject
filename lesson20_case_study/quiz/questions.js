@@ -478,14 +478,14 @@ const questionsByTopic = {
             {
                 question: "Kết quả in ra?",
                 options: ["A. 1 2 3", "B. 0 1 2", "C. 0 1 2 3", "D. Không in gì"],
-                answer: "A. 0 1 2",
+                answer: "B. 0 1 2",
                 explanation: "👉 Lặp từ i = 0 đến i < 3 ⇒ in 0 1 2.",
                 image: "assets/img6.png"
             },
             {
                 question: "Kết quả in ra?",
                 options: ["A. In \"Loop\" 1 lần", "B. In \"Loop\" 2 lần", "C. Vòng lặp vô hạn", "D. Không in gì"],
-                answer: "A. In \"Loop\" 2 lần",
+                answer: "B. In \"Loop\" 2 lần",
                 explanation: "👉  count bắt đầu từ 0 ⇒ điều kiện đúng 2 lần: 0 và 1.",
                 image: "assets/img7.png"
             },

@@ -4,6 +4,9 @@ let quizData = [];
 let currentQuestionIndex = 0;
 let selectedAnswers = [];
 let startTime = null;
+let maxDuration = 120; // (ví dụ 30 giây = 10 phút)
+let timerInterval = null; // Biến lưu interval
+let fiftyFiftyUsed = false; // Track if 50/50 is used
 
 // DOM element shortcuts
 const topicDropdown = document.getElementById("topicDropdown");
@@ -17,6 +20,11 @@ const historyList = document.getElementById("historyList");
 const historyDiv = document.getElementById("history");
 const totalTimeText = document.getElementById("totalTime");
 const questionButtons = document.getElementById("questionButtons");
+
+// === Khởi tạo Materialize dropdown ===
+document.addEventListener("DOMContentLoaded", () => {
+    M.AutoInit();
+});
 
 // === Load chủ đề theo chế độ (Lý thuyết / Bài tập) ===
 function loadTopicsByMode() {
@@ -64,12 +72,8 @@ function startQuiz() {
 
     showQuestion();
     renderQuestionButtons();
+    startTimer(); // 🕑 Bắt đầu đếm ngược
 }
-
-// === Khởi tạo Materialize dropdown ===
-document.addEventListener("DOMContentLoaded", () => {
-    M.AutoInit();
-});
 
 // === Hiển thị câu hỏi hiện tại ===
 function showQuestion() {
@@ -94,7 +98,11 @@ function showQuestion() {
     q.options.forEach((opt, idx) => {
         const label = document.createElement("label");
         label.className = "answer-box text-black";
+        label.dataset.index = idx; // Đánh dấu đáp án
 
+        label.innerHTML = `
+        <input name="answer" type="radio" value="${idx}" style="pointer-events: none;"/>
+        <span style="color: black; font-family: 'Segoe UI', sans-serif">${opt}</span>`;
         if (savedAnswer) {
             if (idx === savedAnswer.correct) label.classList.add("correct");
             else if (idx === savedAnswer.selected && !savedAnswer.isCorrect) label.classList.add("incorrect");
@@ -102,11 +110,18 @@ function showQuestion() {
 
         label.innerHTML = `
             <input name="answer" type="radio" value="${idx}" ${savedAnswer?.selected === idx ? 'checked' : ''}/>
-            <span>${opt}</span>
+           <span style="color: black;font-family: 'Segoe UI', sans-serif">${opt}</span>
         `;
         optionsContainer.appendChild(label);
     });
-
+    // Add "Change Answer" button if already answered
+    if (savedAnswer) {
+        const changeAnswerButton = document.createElement('button');
+        changeAnswerButton.className = 'btn yellow darken-1';
+        changeAnswerButton.textContent = 'Chọn lại đáp án';
+        changeAnswerButton.onclick = allowChangeAnswer;
+        optionsContainer.appendChild(changeAnswerButton);
+    }
     renderQuestionButtons();
 }
 
@@ -152,7 +167,7 @@ function checkAnswer() {
     };
 
     showQuestion(); // Hiển thị lại với màu
-    
+
     Swal.fire({
         title: isCorrect ? 'Đúng rồi!' : 'Chưa đúng!',
         html: `
@@ -167,8 +182,83 @@ function checkAnswer() {
     });
 
     if (selectedAnswers.filter(a => a !== undefined).length === quizData.length) {
+        checkRewards();  // Call the reward check function
         showResult();
     }
+}
+
+// Phần thưởng cho điểm cao
+function checkRewards() {
+    const correctAnswers = selectedAnswers.filter(ans => ans.isCorrect).length;
+    if (correctAnswers >= 10) {
+        Swal.fire({
+            title: 'Chúc mừng!',
+            text: 'Bạn đã đạt được phần thưởng "Thánh làm bài"! 🎉',
+            icon: 'success',
+            confirmButtonColor: '#3085d6'
+        });
+    }
+}
+
+// Xử lý 50/50
+function fiftyFifty() {
+    if (fiftyFiftyUsed) {
+        Swal.fire({
+            title: 'Thông báo',
+            text: 'Bạn đã sử dụng tính năng 50/50 rồi!',
+            icon: 'warning',
+            confirmButtonColor: '#3085d6'
+        });
+        return;
+    }
+
+    fiftyFiftyUsed = true;
+    const q = quizData[currentQuestionIndex];
+    const correctIndex = q.options.findIndex(opt => opt === q.answer);
+
+    // Find two incorrect answers
+    const incorrectIndexes = [];
+    for (let i = 0; i < q.options.length; i++) {
+        if (i !== correctIndex) incorrectIndexes.push(i);
+    }
+
+    // Remove two incorrect answers
+    const removeIndexes = incorrectIndexes.slice(0, 2);
+    removeIndexes.forEach(idx => {
+        document.querySelectorAll('input[name="answer"]')[idx].disabled = true;
+    });
+    Swal.fire({
+        title: '50/50 đã được sử dụng!',
+        text: 'Hai đáp án sai đã được loại bỏ.',
+        icon: 'info',
+        confirmButtonColor: '#3085d6'
+    });
+}
+
+// Cộng thêm 5s nếu muốn
+function addTime() {
+    maxDuration += 5;  // Add 5 seconds to the time
+    Swal.fire({
+        title: 'Thêm thời gian!',
+        text: 'Bạn đã cộng thêm 5 giây.',
+        icon: 'info',
+        confirmButtonColor: '#3085d6'
+    });
+}
+
+// Chọn lại đáp án thêm 1 lần nữa
+function allowChangeAnswer() {
+    const selected = document.querySelector('input[name="answer"]:checked');
+    if (selected) {
+        // Allow the user to change the answer if it's already selected
+        selected.disabled = false;
+    }
+    Swal.fire({
+        title: 'Chọn lại đáp án',
+        text: 'Bạn có thể chọn lại đáp án cho câu hỏi này.',
+        icon: 'info',
+        confirmButtonColor: '#3085d6'
+    });
 }
 
 // === Hiển thị kết quả bài làm ===
@@ -205,6 +295,7 @@ function showResult() {
     resultDiv.classList.remove('hidden');
 
     saveHistory(score, quizData.length, duration);
+    clearInterval(timerInterval); // 🛑 Dừng đếm ngược khi kết thúc
 }
 
 // === Lưu lịch sử vào localStorage ===
@@ -239,7 +330,6 @@ function showHistory() {
         totalTime += entry.time;
     });
 
-    totalTimeText.innerHTML = `<i class="fas fa-calculator"></i> Tổng thời gian đã làm: <b>${totalTime}</b> giây.`;
 
     resultDiv.classList.add('hidden');
     historyDiv.classList.remove('hidden');
@@ -289,8 +379,8 @@ function renderQuestionButtons() {
         const btn = document.createElement('button');
         const isAnswered = selectedAnswers[i] !== undefined;
         btn.className = `btn-small ${isAnswered ? 'blue lighten-2 white-text' : 'grey lighten-1 black-text'}`;
-        btn.innerHTML = isAnswered ? 
-            `<i class="fas fa-check-circle"></i> ${i + 1}` : 
+        btn.innerHTML = isAnswered ?
+            `<i class="fas fa-check-circle"></i> ${i + 1}` :
             `${i + 1}`;
         btn.onclick = () => {
             currentQuestionIndex = i;
@@ -298,4 +388,33 @@ function renderQuestionButtons() {
         };
         questionButtons.appendChild(btn);
     }
+}
+
+// === Bắt đầu đếm ngược thời gian ===
+function startTimer() {
+    let remainingTime = maxDuration;
+
+    clearInterval(timerInterval); // Clear nếu trước đó đã có timer
+    timerInterval = setInterval(() => {
+        remainingTime--;
+
+        const minutes = Math.floor(remainingTime / 60);
+        const seconds = remainingTime % 60;
+
+        document.getElementById("timerDisplay").textContent =
+            `🕑 Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            Swal.fire({
+                title: 'Hết giờ!',
+                text: 'Bài làm của bạn đã hết thời gian.',
+                icon: 'warning',
+                confirmButtonText: 'Xem kết quả',
+                confirmButtonColor: '#3085d6'
+            }).then(() => {
+                showResult();
+            });
+        }
+    }, 1000);
 }

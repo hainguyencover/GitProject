@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 9: Kiểm tra cặp phần tử liên kề</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #result.error {
+            color: red;
+        }
+
+        #result.success {
+            color: green;
+        }
+
+        #result.failure {
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Bài 9: Kiểm tra cặp phần tử liên kề</h1>
+<pre>
+    Mô tả:
+        Nhập 1 mảng từ bàn phím với độ dài n (với n là số chẵn).
+        Hiển thị mảng sau khi nhập. Kiểm tra mảng vừa nhập.
+    Yêu cầu:
+        Nếu các cặp phần tử liên kề (phần tử thứ nhất < phần tử thứ hai) thì hiển thị thông báo "OK".
+        Nếu không thỏa mãn thì hiển thị "NO".
+    Ví dụ:
+        Input: 1, 2, 6, 7, 5, 8 -> Output: OK (vì cặp (1,2), (6,7), (5,8) đều thỏa mãn phần tử thứ nhất nhỏ hơn phần tử thứ hai)
+        Input: 1, 2, 6, 7, 8, 4 -> Output: NO (vì cặp (8,4) không thỏa mãn)
+    Kỹ năng liên quan:
+        Nhập liệu cơ bản,
+        Làm việc với mảng (khai báo,
+        Nhập phần tử,
+        Hiển thị,
+        Duyệt mảng theo cặp),
+        Vòng lặp với bước nhảy 2,
+        Câu lệnh điều kiện.
+</pre>
+<input type="text" id="inputNumber" placeholder="Nhập vào một mảng số nguyên" size="50">
+<button onclick="checkButton()">Kiểm tra</button>
+<p id="result"></p>
+<script>
+    function checkButton() {
+        let input = document.getElementById("inputNumber").value;
+        let arr = input.split(',').map(Number);
+        let result = document.getElementById("result");
+
+        if (input === "") {
+            alert("Vui lòng nhập vào một mảng số nguyên.");
+            return;
+        }
+        for (let i = 0; i < arr.length; i += 2) {
+            if (arr[i] < arr[i + 1]) {
+                result.innerHTML = "OK";
+                result.className = "success";
+                continue;
+            } else {
+                result.innerText = "NO"
+                result.className = "error";
+            }
+        }
+    }
+</script>
+</body>
+</html>

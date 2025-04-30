@@ -7,3 +7,9 @@
 // two[two.length - 1] = 7;
 // alert(two);
 
+let x = 0;
+if (x){
+    console.log("Tr")
+}else {
+    console.log("F")
+}

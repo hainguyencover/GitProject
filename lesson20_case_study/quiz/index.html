@@ -21,6 +21,7 @@
     <div id="topic-selector" class="card-panel">
         <!-- Chọn loại -->
         <div class="input-field">
+            <label for="modeSelector"></label>
             <select id="modeSelector" onchange="loadTopicsByMode()">
                 <option value="" disabled selected>-- Chọn loại --</option>
                 <option value="Lý thuyết">🧠 Lý thuyết</option>
@@ -29,6 +30,7 @@
         </div>
         <!-- Chọn chủ đề -->
         <div class="input-field">
+            <label for="topicDropdown"></label>
             <select id="topicDropdown">
                 <option value="" disabled selected>-- Chọn chủ đề --</option>
             </select>
@@ -37,18 +39,23 @@
     </div>
     <!-- Làm bài -->
     <div id="quiz" class="card-panel hidden">
-        <h5 id="questionText"></h5>
-        <img id="questionImage" class="responsive-img" style="max-height: 300px; margin: 10px 0;"  alt=""/>
+        <div class="question-header">
+            <h5 id="questionText"></h5>
+            <div id="timerDisplay"></div>
+        </div>
+        <img id="questionImage" class="responsive-img" style="max-height: 300px; margin: 10px 0;" alt="" src=""/>
         <div id="optionsContainer"></div>
         <div class="row">
             <div class="col s4">
-                <button class="btn blue lighten-1" onclick="prevQuestion()"><i class="fas fa-arrow-left"></i> Lùi</button>
+                <button class="btn blue lighten-1" onclick="prevQuestion()"><i class="fas fa-arrow-left"></i> Lùi
+                </button>
             </div>
             <div class="col s4">
                 <button class="btn green" onclick="checkAnswer()"><i class="fas fa-check"></i> Kiểm tra</button>
             </div>
             <div class="col s4">
-                <button class="btn blue lighten-1" onclick="nextQuestion()">Tiếp <i class="fas fa-arrow-right"></i></button>
+                <button class="btn blue lighten-1" onclick="nextQuestion()">Tiếp <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
         <div id="questionButtons" class="btn-group"></div>
@@ -71,10 +78,17 @@
     <div id="history" class="card-panel hidden">
         <h5>Lịch sử làm bài</h5>
         <ul id="historyList" class="collection"></ul>
-        <p id="totalTime"></p>
         <button class="btn red lighten-1" onclick="confirmClearHistory()"><i class="fas fa-trash"></i> Xóa</button>
         <button class="btn grey lighten-1" onclick="resetQuiz()"><i class="fas fa-arrow-left"></i> Quay lại</button>
     </div>
+<!--    <div class="row">-->
+<!--        <div class="col s6">-->
+<!--            <button class="btn orange" onclick="fiftyFifty()">50/50</button>-->
+<!--        </div>-->
+<!--        <div class="col s6">-->
+<!--            <button class="btn teal" onclick="addTime()">Thêm 5s</button>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 <!-- Script -->
 <script src="questions.js"></script>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 4: Kiểm tra và rút gọn phân số</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<h1>Bài 4: Kiểm tra và rút gọn phân số</h1>
+<pre>
+    Mô tả:
+        Viết một hàm truyền vào 1 tham số x (find(x)).
+        Hàm thực hiện kiểm tra x.
+    Yêu cầu:
+        Nếu x không có định dạng là 1 phân số (ví dụ: x/y) thì hiển thị "Không phải là phân số".
+        Nếu x là phân số thì tiến hành rút gọn phân số đó về tối giản, hiển thị phân số tối giản.
+    Ví dụ:
+        Input: 123/ -> Output: Không phải là phân số
+        Input: 12/a11 -> Output: Không phải là phân số
+        Input: 1/0 -> Output: Không phải là phân số (Lưu ý: Mẫu số bằng 0 không hợp lệ trong phân số)
+        Input: 0/1 -> Output: 0 (Phân số 0/1 rút gọn là 0)
+        Input: 1/2 -> Output: 1/2
+        Input: 12/48 -> Output: 1/4
+    Kỹ năng liên quan:
+        Định nghĩa và sử dụng hàm, xử lý chuỗi (tách tử số và mẫu số)
+        Chuyển đổi kiểu dữ liệu (chuỗi sang số)
+        Kiểm tra định dạng (regex hoặc xử lý chuỗi)
+        Câu lệnh điều kiện
+        Tìm ước số chung lớn nhất (GCD) để rút gọn phân số.
+</pre>
+<input type="text" id="inputNumber" placeholder="Nhập vào 1 phân số x/y" size="50">
+<button onclick="find()">Kiểm tra</button>
+<p id="result"></p>
+<script>
+    function find() {
+        let input = document.getElementById("inputNumber").value;
+        let parts = input.split("/");
+        if (input === ""){
+            alert("Vui lòng nhập vào một phân số");
+            return;
+        }
+        if (parts.length !== 2) {
+            document.getElementById("result").innerHTML = "Không phải là phân số";
+            return;
+        }
+        let numerator = parseInt(parts[0].trim());
+        let denominator = parseInt(parts[1].trim());
+        if (isNaN(numerator) || isNaN(denominator) || denominator === 0) {
+            document.getElementById("result").innerHTML = "Không phải là phân số";
+        } else {
+            if (numerator === 0) {
+                document.getElementById("result").innerHTML = "0";
+
+            } else {
+                let gcd = findGCD(numerator, denominator);
+                numerator /= gcd;
+                denominator /= gcd;
+                document.getElementById("result").innerHTML = numerator + "/" + denominator;
+            }
+        }
+    }
+
+    function findGCD() {
+        let a = Math.abs(arguments[0]);
+        let b = Math.abs(arguments[1]);
+        while (b) {
+            let t = b;
+            b = a % b;
+            a = t;
+        }
+        return a;
+    }
+</script>
+</body>
+</html>

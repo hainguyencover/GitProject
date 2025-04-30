@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 2: Kiểm tra loại tam giác</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<h1>Bài 2: Kiểm tra loại tam giác</h1>
+<pre>
+    Mô tả:
+        Viết một hàm truyền vào 3 tham số x, y, z (checkTriangle(x,y,z)).
+        Hàm thực hiện kiểm tra xem 3 số này có tạo thành các loại tam giác nào.
+    Yêu cầu:
+        Nếu x, y, z không phải là 3 cạnh của 1 tam giác thì hiển thị "Không phải là cạnh tam giác".
+        Nếu x, y, z là 3 cạnh của 1 tam giác vuông thì hiển thị "Là 3 cạnh của tam giác vuông".
+        Nếu x, y, z không phải là 3 cạnh của 1 tam giác vuông (nhưng vẫn là 3 cạnh tam giác) thì hiển thị "Chỉ là 3 cạnh của một tam giác".
+    Ví dụ:
+        Input: -3,5,7 -> Output: Không phải là cạnh tam giác
+        Input: 1,2,3 -> Output: Không phải là cạnh tam giác
+        Input: 3,4,5 -> Output: Là 3 cạnh của tam giác vuông
+        Input: 4,12,10 -> Output: Chỉ là 3 cạnh của một tam giác
+    Kỹ năng liên quan:
+        Định nghĩa và sử dụng hàm
+        Truyền tham số
+        Câu lệnh điều kiện phức tạp
+        Kiểm tra các điều kiện hình học (bất đẳng thức tam giác, định lý Pytago).
+</pre>
+<input type="number" id="inputX" placeholder="Nhập vào cạnh x" size="50">
+<input type="number" id="inputY" placeholder="Nhập vào cạnh y" size="50">
+<input type="number" id="inputZ" placeholder="Nhập vào cạnh z" size="50">
+
+<button onclick="checkTriangle()">Kiểm tra</button>
+<p id="result"></p>
+<script>
+    function checkTriangle(x, y, z) {
+        let inputX = document.getElementById("inputX").value;
+        let inputY = document.getElementById("inputY").value;
+        let inputZ = document.getElementById("inputZ").value;
+        x = parseInt(inputX);
+        y = parseInt(inputY);
+        z = parseInt(inputZ);
+        if (inputX === "" || inputY === "" || inputZ === "") {
+            alert("Vui lòng nhập vào một số.");
+            return;
+        }
+        if (x+y>z && x+z>y && y+z>x) {
+            if (x*x + y*y === z*z || x*x + z*z === y*y || y*y + z*z === x*x) {
+                document.getElementById("result").innerHTML = "<b>Là 3 cạnh của tam giác vuông</b>";
+            } else {
+                document.getElementById("result").innerHTML = "<b>Chỉ là 3 cạnh của một tam giác</b>";
+            }
+        } else {
+            document.getElementById("result").innerHTML = "<b>Không phải là cạnh tam giác</b>";
+        }
+    }
+</script>
+</body>
+</html>

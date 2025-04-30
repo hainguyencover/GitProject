@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 10: Tìm nguyên âm trong chuỗi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #result.error {
+            color: red;
+        }
+
+        #result.success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<h1>Bài 10: Tìm nguyên âm trong chuỗi</h1>
+<pre>
+    Mô tả:
+        Viết 1 hàm truyền vào 1 tham số (tham số là một chuỗi), (checkString(str)).
+    Yêu cầu:
+        Hàm trả về mảng các ký tự nguyên âm có trong chuỗi.
+        Lưu ý: mảng trả về không chứa các giá trị trùng lặp và ký tự in thường và in hoa xem như là giống nhau (ví dụ: 'a' và 'A' chỉ lấy một lần).
+    Ví dụ:
+        Input: "hello" -> Output: [e, o]
+        Input: "Codegym DaNang A" -> Output: [o, e, a]
+    Kỹ năng liên quan:
+        Định nghĩa và sử dụng hàm
+        Xử lý chuỗi (duyệt qua từng ký tự)
+        Kiểm tra ký tự (xem có phải nguyên âm không
+        Chuyển sang cùng kiểu chữ thường/hoa để so sánh)
+        Làm việc với mảng (thêm phần tử, kiểm tra trùng lặp)
+</pre>
+<input type="text" id="inputNumber" placeholder="Nhập vào một mảng số nguyên" size="50">
+<button onclick="checkButton()">Kiểm tra</button>
+<p id="result"></p>
+<script>
+    function checkButton() {
+        let input = document.getElementById("inputNumber").value.trim();
+        let arr = input.toLowerCase().split("");
+        let result = document.getElementById("result");
+        let vowels = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === "e" || arr[i] === "u" || arr[i] === "o" || arr[i] === "a" || arr[i] === "i") {
+                if (!vowels.includes(arr[i])) {
+                    vowels.push(arr[i]);
+                }
+            }
+        }
+        result.innerHTML = `[${vowels.join(", ")}]`;
+    }
+</script>
+</body>
+</html>
